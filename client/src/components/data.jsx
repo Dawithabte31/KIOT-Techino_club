@@ -1,47 +1,47 @@
 const data = [
   {
     name: "Fanuel Eshetu",
-    imag: "src/components/images/fan.jfif",
+    imag: "src/images/fan.jfif",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, officiis impedit repellat numquam necessitatibus aliquam nihil laborum officia. Neque, praesentium eos!",
   },
 
   {
     name: "Eyouel Amare",
-    imag: "src/components/images/eyu.png",
+    imag: "src/images/eyu.png",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, officiis impedit repellat numquam necessitatibus aliquam nihil laborum officia. Neque, praesentium eos!",
   },
 
   {
     name: "Yonas Getnet",
-    imag: "src/components/images/YG.png",
+    imag: "src/images/YG.png",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, officiis impedit repellat numquam necessitatibus aliquam nihil laborum officia. Neque, praesentium eos!",
   },
 
   {
     name: "Getasew Adane",
-    imag: "src/components/images/gech.png",
+    imag: "src/images/gech.png",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, officiis impedit repellat numquam necessitatibus aliquam nihil laborum officia. Neque, praesentium eos!",
   },
 
   {
     name: "Yabsra",
-    imag: "src/components/images/gech.png",
+    imag: "src/images/gech.png",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, officiis impedit repellat numquam necessitatibus aliquam nihil laborum officia. Neque, praesentium eos!",
   },
   {
     name: "Natnael Abebe",
-    imag: "src/components/images/nati.jpg",
+    imag: "src/images/nati.jpg",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, officiis impedit repellat numquam necessitatibus aliquam nihil laborum officia. Neque, praesentium eos!",
   },
   {
     name: "Dawit Habitamu",
-    imag: "src/components/images/dave.png",
+    imag: "src/images/dave.png",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, officiis impedit repellat numquam necessitatibus aliquam nihil laborum officia. Neque, praesentium eos!",
   },
