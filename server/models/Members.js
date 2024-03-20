@@ -15,7 +15,7 @@ const MemberSchema = new Schema(
       },
       photo: {
         type: String,
-        required: false,
+        required: true,
       },
   },
   { timestamps: true }

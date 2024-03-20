@@ -5,7 +5,8 @@ import debounce from "lodash.debounce";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function Blog() {
+function Blog({members}) {
+  const PF = "http://localhost:3000/images/";
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [slidessToShow, setSlidesToShow] = useState(1);
   useEffect(() => {
@@ -45,14 +46,14 @@ function Blog() {
     <div className="profile--container">
       <h2 className="profile--header">Members</h2>
       <Slider {...settings}>
-        {Datas.map((Data) => (
+        {members && members.map((member) => (
           <div className="profile">
             <div className="profile--image">
-              <img src={Data.imag} alt={`image of ${Data.name}`} />
+              <img src={PF + member.photo} alt={`image of ${member.fullname}`} />
             </div>
             <div className="profile--notation">
-              <p className="profile--name">{Data.name}</p>
-              <p className="profile--description">{Data.description}</p>
+              <p className="profile--name">{member.fullname}</p>
+              <p className="profile--description">{member.desc}</p>
               <a className="bn5">Read More</a>
             </div>
           </div>

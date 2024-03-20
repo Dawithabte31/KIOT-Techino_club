@@ -29,6 +29,7 @@ export default function Mains() {
         const res = await axios.get('http://localhost:3000/api/members/allmembers' +  search)
         setMembers(res.data)
         }
+        
     fetchMembers()
     fetchServices()
     fetchProjects()
@@ -56,7 +57,7 @@ export default function Mains() {
       </main>
       <Services services={services}/>
       <Projects projects={projects} />
-      <Blog/>
+      <Blog     members={members}/>
     </>
 
   );
