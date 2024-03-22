@@ -1,7 +1,9 @@
 import React from 'react'
+import Footer from '../components/footer'
 
 function AboutH() {
   return (
+    <>
     <div className='about_club_history'>
     <div className='about_club_history_desc'>
        <div className='about_club_history_flex'>
@@ -24,6 +26,8 @@ function AboutH() {
       
     </div> 
   </div>
+  <Footer/>
+  </>
   )
 }
 

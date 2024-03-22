@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 import axios from  'axios';
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from "react-router-dom";
+import Footer from "../components/footer";
 
 // console.log(location);
 
@@ -58,6 +59,7 @@ export default function Mains() {
       <Services services={services}/>
       <Projects projects={projects} />
       <Blog     members={members}/>
+      <Footer/>
     </>
 
   );

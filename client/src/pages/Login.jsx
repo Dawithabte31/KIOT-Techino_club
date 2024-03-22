@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useContext, useRef} from "react";
 import { Context } from "../context/Context";
 import axios from "axios";
+import Footer from "../components/footer";
 
 function Login() {
   const userRef = useRef(null);
@@ -53,6 +54,7 @@ function Login() {
     }
   };
   return (
+    <>
     <div className="login">
       <form className="inputs" onSubmit={handleSubmit}>
         <h1 className="title">Welcome To TechIno</h1>
@@ -109,7 +111,10 @@ function Login() {
           Don't have an account <Link to="/signup">SignUp</Link>
         </p>
       </form>
+
     </div>
+    <Footer/>
+    </>
   );
 }
 

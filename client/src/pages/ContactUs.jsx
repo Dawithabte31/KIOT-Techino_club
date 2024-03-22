@@ -1,8 +1,10 @@
 import React from "react";
 import rightPng from "../images/contact svg.png";
+import Footer from "../components/footer";
 
 export default function ContactUs() {
   return (
+    <>
     <div className="contact--container">
       <div className="contact--info">
         <h2 className="contact--header">Get in touch</h2>
@@ -28,5 +30,7 @@ export default function ContactUs() {
         />
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }

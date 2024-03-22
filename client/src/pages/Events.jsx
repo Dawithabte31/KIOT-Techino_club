@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from  'axios';
+import Footer from '../components/footer';
 
 function Events() {
 
@@ -21,6 +22,7 @@ function Events() {
 
 
   return (
+    <>
     <div className='event'>
         <h1>OUR EVENTS</h1>
     {events && events.map((event, index) => (    
@@ -36,6 +38,8 @@ function Events() {
       
     </div>))}
     </div>
+    <Footer/>
+    </>
   )
 }
 
