@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, {useContext, useState } from 'react';
 import MembersTable from './member/MembersTable';
 import EventsTable from './Event/EventsTable';
 import ProjectsTable from './project/ProjectsTable';
 import RegistrationTable from './registration/RegistrationTable';
 import ServicesTable from './service/ServicesTable';
+import { Context } from '../../context/Context';
+
 
 const AdminDashboard = () => {
+  const { dispatch } = useContext(Context);
+  const handleLogout = ()=>{
+    dispatch({type: "LogOut"})
+    };
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
 
   const renderContent = () => {
@@ -103,7 +109,7 @@ const AdminDashboard = () => {
           </li>
         </ul>
         <div style={{width:"full", display:"flex" ,justifyContent:'center'}}>
-        <button>Logout</button>
+        <button onClick={handleLogout}>Logout</button>
 
         </div>
           

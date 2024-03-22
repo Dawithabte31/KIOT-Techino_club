@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, {useContext, useState } from 'react';
 import RegistrationTable from './registration/RegistrationTable';
-
+import { Context } from '../../context/Context';
+// import { Context } from './context/Context';
 const UserBrd = () => {
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
 
@@ -12,7 +13,13 @@ const UserBrd = () => {
         return null;
     }
   };
+  const { dispatch } = useContext(Context);
+
+  const handleLogout = ()=>{
+    dispatch({type: "LogOut"})
+    };
   return (
+
     <div className='admindashboard' style={{ display: 'flex', fontFamily: 'Arial, sans-serif' }}>
       {/* Sidebar */}
       <div style={{ width: '200px', backgroundColor: '#2c3e50', color: '#ecf0f1', padding: '20px' }}>
@@ -35,7 +42,7 @@ const UserBrd = () => {
           
         </ul>
         <div style={{width:"full", display:"flex" ,justifyContent:'center'}}>
-        <button>Logout</button>
+        <button onClick={handleLogout}>Logout</button>
 
         </div>
           
