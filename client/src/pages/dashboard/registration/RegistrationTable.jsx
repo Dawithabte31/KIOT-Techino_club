@@ -109,10 +109,10 @@ const RegiterTable = () => {
               <td style={tableCellStyle}>{register.why}</td>
               <td style={tableCellStyle}>{register.status}</td>
               <td style={tableCellStyle}>
-                { user && (
+                { user.user && user.user.role==1 && (
                 <div>
                   <button  onClick={() => openEditModal(register._id)} style={actionButtonStyle}>Edit</button>
-                 <button  onClick={() => openEditModal(register._id)} style={actionButtonStyle}>verify</button>
+                  <button  onClick={() => openEditModal(register._id)} style={actionButtonStyle}>verify</button>
                 </div>
                 
                 )}
