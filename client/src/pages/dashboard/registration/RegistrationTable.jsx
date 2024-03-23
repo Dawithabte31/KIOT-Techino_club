@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import EditRegister from "./RegistrationEdit"; 
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-import { useContext } from "react";
 import { Context } from "../../../context/Context";
+
 const RegiterTable = () => {
-  const {user}=useContext(Context);
+  const {user}=useContext(Context)
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [selectedRegisterId, setSelectedRegisterId] = useState(null);
   const [register, setRegister] = useState([]);
