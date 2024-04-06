@@ -94,15 +94,16 @@ export default function Navbar() {
         >
           Login
         </NavLink>
-        <NavLink
-          to="/signup"
-          className={({ isActive }) => {
-            return isActive ? "link active" : "link";
-          }}
-          onClick={handleMenuItemClick}
-        >
-          Signup
-        </NavLink>
+        
+      {!user? (<NavLink
+        to="/signup"
+        className={({ isActive }) => {
+          return isActive ? "link active" : "link";
+        }}
+        onClick={handleMenuItemClick}
+      >
+        Signup
+      </NavLink>):null}
         <NavLink
           to="/contact"
           className={({ isActive }) => {

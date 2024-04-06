@@ -32,10 +32,10 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className='admindashboard' style={{ display: 'flex', fontFamily: 'Arial, sans-serif' }}>
+    <div className='admindashboard ' style={{ display: 'flex', fontFamily: 'Arial, sans-serif' }}>
       {/* Sidebar */}
       <div style={{ width: '200px', backgroundColor: '#2c3e50', color: '#ecf0f1', padding: '20px' }}>
-        <h2 style={{ fontSize: '1.5rem', marginBottom: '20px', color: '#ecf0f1' }}>Admin Dashboard</h2>
+        <h2 className='my-4  flex justify-center h-auto w-auto font-extrabold' >Admin Dashboard</h2>
         <ul style={{ listStyle: 'none', padding: 0 }}>
           <li
             style={{
@@ -109,7 +109,7 @@ const AdminDashboard = () => {
           </li>
         </ul>
         <div style={{width:"full", display:"flex" ,justifyContent:'center'}}>
-        <button onClick={handleLogout}>Logout</button>
+        <button  onClick={handleLogout}>Logout</button>
 
         </div>
           

@@ -8,6 +8,7 @@ import axios from  'axios';
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from "react-router-dom";
 import Footer from "../components/footer";
+import kiot from "../images/kiot.jpg"
 
 // console.log(location);
 
@@ -42,6 +43,7 @@ export default function Mains() {
     <>
       <main className="main--container">
         <div className="hero-section">
+          {/* <img className="mx-auto mx-auto h-screen" src={kiot} alt="" /> */}
           <video autoPlay loop mmuted playsInline>
             <source src={Back} type="video/mp4" />
           </video>

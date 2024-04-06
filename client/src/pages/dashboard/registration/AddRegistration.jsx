@@ -1,6 +1,9 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Context } from '../../../context/Context';
+import { useContext } from 'react';
+const { user } = useContext(Context);
 function AddRegistration() {
   const [fullname, setFullname] = useState("");
   const [age, setAge] = useState("");
@@ -21,7 +24,12 @@ function AddRegistration() {
           skill:skill,
           why:why,
         });
+
+      if(user.user.role==0){
+        window.location.href = '/user';
+      }else{
         window.location.href = '/admin';
+      }
         console.log("done!")
       } catch (error) {
         console.log(error);

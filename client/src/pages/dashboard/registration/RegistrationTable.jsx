@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
-import EditRegister from "./RegistrationEdit"; 
+import EditRegister from "./RegistrationEdit";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { Context } from "../../../context/Context";
 
 const RegiterTable = () => {
-  const {user}=useContext(Context)
+  const { user } = useContext(Context);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [selectedRegisterId, setSelectedRegisterId] = useState(null);
   const [register, setRegister] = useState([]);
+  const [status, setStatus] = useState(register.status);
   const getRegisters = async () => {
     try {
       const res = await axios.get(
@@ -21,10 +22,9 @@ const RegiterTable = () => {
   };
 
   useEffect(() => {
-  getRegisters();
-  },[]); 
+    getRegisters();
+  }, []);
 
-  
   const openEditModal = (registerId) => {
     setSelectedRegisterId(registerId);
     setEditModalOpen(true);
@@ -34,39 +34,67 @@ const RegiterTable = () => {
     setSelectedRegisterId(null);
     setEditModalOpen(false);
   };
-   
+
   const handleUpdate = async () => {
     try {
       // Send a PUT request to update the member
       await axios.put(`http://localhost:3000/api/registers/${register._id}`, {
-        fullname: fullName,
-        age:  age,
+        fullname: fullname,
+        age: age,
         sex: sex,
-        email:email,
+        email: email,
         departement: departement,
-        skills:skills,
-        why:why,
+        skills: skills,
+        why: why,
       });
       onUpdate();
       onClose();
-      
     } catch (error) {
-      console.error('Error updating member:', error);
+      console.error("Error updating member:", error);
     }
   };
+  const handleUpdatestatus = async (registerId) => {
+    try {
+       // Send a PUT request to update the register status to "registered"
+      await axios.put(
+        `http://localhost:3000/api/registers/update/${registerId}`,
+        
+        {
+          fullname,
+          age,
+          sex,
+          email,
+          departement,
+          skills,
+          why,
+          status: "registered",
+        }
+      );
+      console.log("Updated status to 'registered' successfully");
+  
+      } catch (error) {
+      console.error("Error updating status:", error);
+    }
+  };
+  
 
   const handleDelete = async (registerId) => {
     try {
-      const registerToDelete = register.find((register) => register._id === registerId);
-  
+      const registerToDelete = register.find(
+        (register) => register._id === registerId
+      );
+
       if (!registerToDelete) {
         console.error("request not found");
         return;
       }
-      await axios.delete(`http://localhost:3000/api/registers/delete/${registerToDelete._id}`, {
-        data: { register: registerToDelete.fullname }
-      });
-  
+      await axios.delete(
+        `http://localhost:3000/api/registers/delete/${registerToDelete._id}`,
+        {
+          data: { register: registerToDelete.fullname },
+        }
+      );
+
       console.log("request deleted successfully");
       // Update the members after deletion
       getRegisters();
@@ -74,15 +102,17 @@ const RegiterTable = () => {
       console.error("Error deleting request:", err);
     }
   };
-  
-
 
   return (
     <div style={{ maxWidth: "100%", margin: "0 auto" }}>
       <div className="addevent">
-            <NavLink to="/addregister"><button>Register</button></NavLink>
-         </div>
-      <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "1rem" }}>
+        <NavLink to="/addregister">
+          <button>Register</button>
+        </NavLink>
+      </div>
+      <table
+        style={{ width: "100%", borderCollapse: "collapse", marginTop: "1rem" }}
+      >
         <thead>
           <tr>
             <th style={tableHeaderStyle}>Fullname</th>
@@ -94,7 +124,6 @@ const RegiterTable = () => {
             <th style={tableHeaderStyle}>why</th>
             <th style={tableHeaderStyle}>status</th>
             <th style={tableHeaderStyle}>action</th>
-
           </tr>
         </thead>
         <tbody>
@@ -109,26 +138,43 @@ const RegiterTable = () => {
               <td style={tableCellStyle}>{register.why}</td>
               <td style={tableCellStyle}>{register.status}</td>
               <td style={tableCellStyle}>
-                { user.user && user.user.role==1 && (
-                <div>
-                  <button  onClick={() => openEditModal(register._id)} style={actionButtonStyle}>Edit</button>
-                  <button  onClick={() => openEditModal(register._id)} style={actionButtonStyle}>verify</button>
-                </div>
-                
-                )}
-                <button style={{ ...actionButtonStyle, marginLeft: "0.5rem" }} onClick={()=>handleDelete(register._id)}>Delete</button>
+                {
+                  <div>
+                    <button
+                     onClick={() => handleUpdate(register._id)}
+                      style={actionButtonStyle}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleUpdatestatus(register._id)}
+                      style={actionButtonStyle}
+                    >
+                      verify
+                    </button>
+                  </div>
+                }
+                <button
+                  style={{ ...actionButtonStyle, marginLeft: "0.5rem" }}
+                  onClick={() => handleDelete(register._id)}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
       {isEditModalOpen && (
-        <EditRegister registerId={selectedRegisterId} onClose={closeEditModal} onUpdate={handleUpdate} />
+        <EditRegister
+          registerId={selectedRegisterId}
+          onClose={closeEditModal}
+          onUpdate={handleUpdate}
+        />
       )}
     </div>
   );
 };
-
 
 const tableHeaderStyle = {
   background: "#f2f2f2",
@@ -158,4 +204,3 @@ const actionButtonStyle = {
 };
 
 export default RegiterTable;
-

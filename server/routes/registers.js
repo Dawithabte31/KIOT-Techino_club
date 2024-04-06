@@ -2,7 +2,6 @@ const router = require("express").Router();
 const Register= require("../models/Registers");  
 
 
-
 //Create Post
 router.post("/create", async (req, res) => {
   const newRegister = new Register(req.body);
