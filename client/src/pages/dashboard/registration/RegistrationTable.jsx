@@ -122,38 +122,41 @@ const RegiterTable = () => {
         <tbody>
           {register.map((register) => (
             <tr key={register._id}>
-              <td style={tableCellStyle}>{register.fullname}</td>
-              <td style={tableCellStyle}>{register.age}</td>
-              <td style={tableCellStyle}>{register.sex}</td>
-              <td style={tableCellStyle}>{register.email}</td>
-              <td style={tableCellStyle}>{register.departement}</td>
-              <td style={tableCellStyle}>{register.skill}</td>
-              <td style={tableCellStyle}>{register.why}</td>
-              <td style={tableCellStyle}>{register.status}</td>
-              <td style={tableCellStyle}>
-                {
-                  <div>
-                    <button
-                     onClick={() => openEditModal(register._id)}
-                      style={actionButtonStyle}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleUpdatestatus(register._id)}
-                      style={actionButtonStyle}
-                    >
-                      verify
-                    </button>
-                  </div>
-                }
-                <button
-                  style={{ ...actionButtonStyle, marginLeft: "0.5rem" }}
-                  onClick={() => handleDelete(register._id)}
-                >
-                  Delete
-                </button>
-              </td>
+{user.user.role === 1 || user.user.username === register.username ? (
+        <>
+          <td style={tableCellStyle}>{register.fullname}</td>
+          <td style={tableCellStyle}>{register.age}</td>
+          <td style={tableCellStyle}>{register.sex}</td>
+          <td style={tableCellStyle}>{register.email}</td>
+          <td style={tableCellStyle}>{register.departement}</td>
+          <td style={tableCellStyle}>{register.skill}</td>
+          <td style={tableCellStyle}>{register.why}</td>
+          {/* <tdc className={register.status==pendding? (text-red):text-green} style={tableCellStyle}>{register.status}</tdc> */}
+          <td className={register.status === "pendding" ? "text-red-500" : "text-green-600"} style={tableCellStyle}>{register.status}</td>
+          <td style={tableCellStyle}>
+            <div>
+              <button
+                onClick={() => openEditModal(register._id)}
+                style={actionButtonStyle}
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => handleUpdatestatus(register._id)}
+                style={actionButtonStyle}
+              >
+                Verify
+              </button>
+              <button
+                style={{ ...actionButtonStyle, marginLeft: "0.5rem" }}
+                onClick={() => handleDelete(register._id)}
+              >
+                Delete
+              </button>
+            </div>
+          </td>
+        </>
+      ) : null}
             </tr>
           ))}
         </tbody>
