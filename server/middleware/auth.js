@@ -23,7 +23,6 @@ try {
 exports.isAdmin=(req,res,next)=>{
     if(req.user.role === 0){
         return next(new ErrorResponse("You don't have admin rights",401))
-        
     }
     next();
 }

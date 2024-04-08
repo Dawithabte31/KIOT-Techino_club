@@ -85,7 +85,7 @@ export default function Navbar() {
         >
           Event
         </NavLink>
-        <NavLink
+       {!user? ( <NavLink
           to="/login"
           className={({ isActive }) => {
             return isActive ? "link active" : "link";
@@ -93,7 +93,7 @@ export default function Navbar() {
           onClick={handleMenuItemClick}
         >
           Login
-        </NavLink>
+        </NavLink>):null}
         
       {!user? (<NavLink
         to="/signup"
@@ -104,7 +104,7 @@ export default function Navbar() {
       >
         Signup
       </NavLink>):null}
-        <NavLink
+       {( <NavLink
           to="/contact"
           className={({ isActive }) => {
             return isActive ? "link active" : "link";
@@ -112,7 +112,7 @@ export default function Navbar() {
           onClick={handleMenuItemClick}
         >
           Contact us
-        </NavLink>
+        </NavLink>)}
         {user? (
   <NavLink
     to={user.user && (user.user.role? "/admin" : "/user")}
