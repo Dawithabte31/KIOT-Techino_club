@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import EditMember from "./MemberEdit"; 
+import EditMember from "./MemberEdit";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 const MembersTable = () => {
@@ -19,9 +19,8 @@ const MembersTable = () => {
 
   useEffect(() => {
     getMembers();
-  },[]); 
+  }, []);
 
-  
   const openEditModal = (memberId) => {
     setSelectedMemberId(memberId);
     setEditModalOpen(true);
@@ -43,9 +42,8 @@ const MembersTable = () => {
 
       onUpdate();
       onClose();
-      
     } catch (error) {
-      console.error('Error updating member:', error);
+      console.error("Error updating member:", error);
     }
   };
   // const handleDelete = async () => {
@@ -63,16 +61,19 @@ const MembersTable = () => {
   const handleDelete = async (memberId) => {
     try {
       const memberToDelete = members.find((member) => member._id === memberId);
-  
+
       if (!memberToDelete) {
         console.error("Member not found");
         return;
       }
-  
-      await axios.delete(`http://localhost:3000/api/members/delete/${memberToDelete._id}`, {
-        data: { member: memberToDelete.fullname }
-      });
-  
+
+      await axios.delete(
+        `http://localhost:3000/api/members/delete/${memberToDelete._id}`,
+        {
+          data: { member: memberToDelete.fullname },
+        }
+      );
+
       console.log("Member deleted successfully");
       // Update the members after deletion
       getMembers();
@@ -80,16 +81,19 @@ const MembersTable = () => {
       console.error("Error deleting member:", err);
     }
   };
-  
+
   return (
     <div style={{ maxWidth: "100%", margin: "0 auto" }}>
       <div className="addevent">
-      <NavLink to="/addmember"><button>Add New Member</button></NavLink>
+        <NavLink to="/addmember">
+          <button>Add New Member</button>
+        </NavLink>
       </div>
-      <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "1rem" }}>
+      <table
+        style={{ width: "100%", borderCollapse: "collapse", marginTop: "1rem" }}
+      >
         <thead>
           <tr>
-            <th style={tableHeaderStyle}>ID</th>
             <th style={tableHeaderStyle}>Full Name</th>
             <th style={tableHeaderStyle}>Description</th>
             <th style={tableHeaderStyle}>Photo</th>
@@ -99,27 +103,43 @@ const MembersTable = () => {
         <tbody>
           {members.map((member) => (
             <tr key={member._id}>
-              <td style={tableCellStyle}>{member._id}</td>
               <td style={tableCellStyle}>{member.fullname}</td>
               <td style={tableCellStyle}>{member.desc}</td>
               <td style={tableCellStyle}>
-                <img src={member.photo} alt={member.fullName} style={photoStyle} />
+                <img
+                  src={member.photo}
+                  alt={member.fullName}
+                  style={photoStyle}
+                />
               </td>
               <td style={tableCellStyle}>
-                <button  onClick={() => openEditModal(member._id)} style={actionButtonStyle}>Edit</button>
-                <button style={{ ...actionButtonStyle, marginLeft: "0.5rem" }} onClick={()=>handleDelete(member._id)}>Delete</button>
+                <button
+                  onClick={() => openEditModal(member._id)}
+                  style={actionButtonStyle}
+                >
+                  Edit
+                </button>
+                <button
+                  style={{ ...actionButtonStyle, marginLeft: "0.5rem" }}
+                  onClick={() => handleDelete(member._id)}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
       {isEditModalOpen && (
-        <EditMember memberId={selectedMemberId} onClose={closeEditModal} onUpdate={handleUpdate} />
+        <EditMember
+          memberId={selectedMemberId}
+          onClose={closeEditModal}
+          onUpdate={handleUpdate}
+        />
       )}
     </div>
   );
 };
-
 
 const tableHeaderStyle = {
   background: "#f2f2f2",
@@ -149,4 +169,3 @@ const actionButtonStyle = {
 };
 
 export default MembersTable;
-

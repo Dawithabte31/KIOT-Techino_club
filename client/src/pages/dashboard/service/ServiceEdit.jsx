@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-  const ServiceEdit = ({ serviceId, onClose}) => {
-  const [service, setServices] = useState({
+
+
+const ServiceEdit = ({ serviceId, onClose}) => {
+const [service, setServices] = useState({
      title: "",
      desc: "",
      photo: "",

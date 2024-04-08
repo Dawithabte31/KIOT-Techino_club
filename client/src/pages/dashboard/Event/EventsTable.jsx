@@ -81,7 +81,6 @@ const EventsTable = () => {
       <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "1rem" }}>
         <thead>
           <tr>
-            <th style={tableHeaderStyle}>ID</th>
             <th style={tableHeaderStyle}>Title</th>
             <th style={tableHeaderStyle}>Description</th>
             <th style={tableHeaderStyle}>Photo</th>
@@ -91,7 +90,6 @@ const EventsTable = () => {
         <tbody>
           {events.map((event) => (
             <tr key={event._id}>
-              <td style={tableCellStyle}>{event._id}</td>
               <td style={tableCellStyle}>{event.title}</td>
               <td style={tableCellStyle}>{event.desc}</td>
               <td style={tableCellStyle}>

@@ -9,7 +9,6 @@ const RegiterTable = () => {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [selectedRegisterId, setSelectedRegisterId] = useState(null);
   const [register, setRegister] = useState([]);
-  const [status, setStatus] = useState(register.status);
   const getRegisters = async () => {
     try {
       const res = await axios.get(
@@ -55,24 +54,18 @@ const RegiterTable = () => {
   };
   const handleUpdatestatus = async (registerId) => {
     try {
-       // Send a PUT request to update the register status to "registered"
+      // Send a PUT request to update the register status to "registered"
       await axios.put(
         `http://localhost:3000/api/registers/update/${registerId}`,
-        
         {
-          fullname,
-          age,
-          sex,
-          email,
-          departement,
-          skills,
-          why,
           status: "registered",
         }
       );
       console.log("Updated status to 'registered' successfully");
   
-      } catch (error) {
+      // Update the register status in the local state
+      setRegister(register.map(reg => reg._id === registerId ? { ...reg, status: "registered" } : reg));
+    } catch (error) {
       console.error("Error updating status:", error);
     }
   };
@@ -141,7 +134,7 @@ const RegiterTable = () => {
                 {
                   <div>
                     <button
-                     onClick={() => handleUpdate(register._id)}
+                     onClick={() => openEditModal(register._id)}
                       style={actionButtonStyle}
                     >
                       Edit

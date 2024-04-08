@@ -33,7 +33,7 @@ const RegistrationEdit = ({ registerId, onClose }) => {
     getRegisterDetails();
   }, [registerId]);
 
-  const handleUpdate = async () => {
+  const handleUpdate = async (registerId) => {
     try {
       await axios.put(
         `http://localhost:3000/api/registers/update/${registerId}`,

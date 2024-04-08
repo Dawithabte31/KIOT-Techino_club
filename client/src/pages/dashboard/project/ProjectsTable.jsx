@@ -78,7 +78,6 @@ const ProjectsTable = () => {
       <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "1rem" }}>
         <thead>
           <tr>
-            <th style={tableHeaderStyle}>ID</th>
             <th style={tableHeaderStyle}>PrName</th>
             <th style={tableHeaderStyle}>Description</th>
             <th style={tableHeaderStyle}>Photo</th>
@@ -88,7 +87,6 @@ const ProjectsTable = () => {
         <tbody>
           {projects.map((project) => (
               <tr key={project._id}>
-              <td style={tableCellStyle}>{project._id}</td>
               <td style={tableCellStyle}>{project.proname}</td>
               <td style={tableCellStyle}>{project.desc}</td>
               <td style={tableCellStyle}>
