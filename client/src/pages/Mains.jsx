@@ -9,6 +9,8 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink } from "react-router-dom";
 import Footer from "../components/footer";
 import kiot from "../images/kiot.jpg"
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'  
 
 // console.log(location);
 
@@ -16,20 +18,26 @@ export default function Mains() {
    const [projects,setProjects] = useState(null);
    const [services,setServices] = useState(null);
    const [members,setMembers] = useState(null);
+   const [loadingp,setLoadingp]=useState(true);
+   const [loadings,setLoadings]=useState(true);
+   const [loadingm,setLoadingm]=useState(true);
 
   const {search}=useLocation();
   useEffect(()=>{
     const fetchProjects = async()=>{
     const res = await axios.get('http://localhost:3000/api/projects/allprojects' +  search)
-    setProjects(res.data)
+    setProjects(res.data);
+    setLoadingp(false);
     }
     const fetchServices = async()=>{
       const res = await axios.get('http://localhost:3000/api/services/allservices' +  search)
-      setServices(res.data)
+      setServices(res.data);
+      setLoadings(false);
       }
      const fetchMembers = async()=>{
         const res = await axios.get('http://localhost:3000/api/members/allmembers' +  search)
-        setMembers(res.data)
+        setMembers(res.data);
+        setLoadingm(false);
         }
         
     fetchMembers()

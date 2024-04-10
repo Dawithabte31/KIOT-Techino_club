@@ -52,7 +52,7 @@ const RegiterTable = () => {
       console.error("Error updating member:", error);
     }
   };
-  const handleUpdatestatus = async (registerId) => {
+  const handleUpdatestatus = async (registerId,username) => {
     try {
       // Send a PUT request to update the register status to "registered"
       await axios.put(
@@ -62,14 +62,17 @@ const RegiterTable = () => {
         }
       );
       console.log("Updated status to 'registered' successfully");
-  
+
       // Update the register status in the local state
-      setRegister(register.map(reg => reg._id === registerId ? { ...reg, status: "registered" } : reg));
+      setRegister(
+        register.map((reg) =>
+          reg._id === registerId ? { ...reg, status: "registered" } : reg
+        )
+      );
     } catch (error) {
       console.error("Error updating status:", error);
     }
   };
-  
 
   const handleDelete = async (registerId) => {
     try {
@@ -122,41 +125,51 @@ const RegiterTable = () => {
         <tbody>
           {register.map((register) => (
             <tr key={register._id}>
-{user.user.role === 1 || user.user.username === register.username ? (
-        <>
-          <td style={tableCellStyle}>{register.fullname}</td>
-          <td style={tableCellStyle}>{register.age}</td>
-          <td style={tableCellStyle}>{register.sex}</td>
-          <td style={tableCellStyle}>{register.email}</td>
-          <td style={tableCellStyle}>{register.departement}</td>
-          <td style={tableCellStyle}>{register.skill}</td>
-          <td style={tableCellStyle}>{register.why}</td>
-          {/* <tdc className={register.status==pendding? (text-red):text-green} style={tableCellStyle}>{register.status}</tdc> */}
-          <td className={register.status === "pendding" ? "text-red-500" : "text-green-600"} style={tableCellStyle}>{register.status}</td>
-          <td style={tableCellStyle}>
-            <div>
-              <button
-                onClick={() => openEditModal(register._id)}
-                style={actionButtonStyle}
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => handleUpdatestatus(register._id)}
-                style={actionButtonStyle}
-              >
-                Verify
-              </button>
-              <button
-                style={{ ...actionButtonStyle, marginLeft: "0.5rem" }}
-                onClick={() => handleDelete(register._id)}
-              >
-                Delete
-              </button>
-            </div>
-          </td>
-        </>
-      ) : null}
+              {user.user.role === 1 ||
+              user.user.username === register.username ? (
+                <>
+                  <td style={tableCellStyle}>{register.fullname}</td>
+                  <td style={tableCellStyle}>{register.age}</td>
+                  <td style={tableCellStyle}>{register.sex}</td>
+                  <td style={tableCellStyle}>{register.email}</td>
+                  <td style={tableCellStyle}>{register.departement}</td>
+                  <td style={tableCellStyle}>{register.skill}</td>
+                  <td style={tableCellStyle}>{register.why}</td>
+                  {/* <tdc className={register.status==pendding? (text-red):text-green} style={tableCellStyle}>{register.status}</tdc> */}
+                  <td
+                    className={
+                      register.status === "pending"
+                        ? "text-red-500"
+                        : "text-green-600"
+                    }
+                    style={tableCellStyle}
+                  >
+                    {register.status}
+                  </td>
+                  <td style={tableCellStyle}>
+                    <div>
+                      <button
+                        onClick={() => openEditModal(register._id)}
+                        style={actionButtonStyle}
+                      >
+                        Edit
+                      </button>
+                      {user.user.role===1 ?(<button
+                        onClick={() => handleUpdatestatus(register._id)}
+                        style={actionButtonStyle}
+                      >
+                        Verify
+                      </button>):null}
+                      <button
+                        style={{ ...actionButtonStyle, marginLeft: "0.5rem" }}
+                        onClick={() => handleDelete(register._id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </>
+              ) : null}
             </tr>
           ))}
         </tbody>
