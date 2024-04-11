@@ -3,7 +3,6 @@ import EditService from "./ServiceEdit";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 
-
 const ServicesTable = () => {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [selectedServiceId, setSelectedServiceId] = useState(null);

@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Register = require("../models/Registers");
 
 //Create Post
+
 router.post("/create", async (req, res) => {
   const newRegister = new Register(req.body);
   try {
@@ -11,6 +12,7 @@ router.post("/create", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 //get Single post
 router.get("/get/:id", async (req, res) => {
   try {

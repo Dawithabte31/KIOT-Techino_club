@@ -68,6 +68,7 @@ const eventRoute = require("./routes/events");
 const userRoute = require("./routes/userRoutes");
 const projectRoute = require("./routes/projects");
 const serviceRoute = require("./routes/services");
+const messageRoute = require("./routes/messages");
 const registerRoute = require("./routes/registers"); // Corrected import path
 const auth = require("./middleware/auth");
 const path = require("path");
@@ -120,6 +121,7 @@ app.use("/api/projects", projectRoute);
 app.use("/api/services", serviceRoute);
 app.use("/api/members", membersRoute);
 app.use("/api/registers", registerRoute);
+app.use("/api/messages",messageRoute);
 
 // Start server
 const port = process.env.PORT || 3000;
