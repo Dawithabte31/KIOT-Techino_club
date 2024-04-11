@@ -64,11 +64,8 @@ const UserBrd = () => {
             Registration
           </li>
         </ul>
-        <div
-          style={{ width: "full", display: "flex", justifyContent: "center" }}
-        >
-          <button onClick={handleLogout}>Logout</button>
-        </div>
+
+        <button className="bg-white w-6 text-center text-black active:bg-gray-400" onClick={handleLogout}>Logout</button>
       </div>
       <div style={{ flex: 1, padding: "20px", backgroundColor: "#ecf0f1" }}>
         {renderContent()}

@@ -9,7 +9,8 @@ import axios from "axios";
 
 const AdminDashboard = () => {
   const { dispatch } = useContext(Context);
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+    e.preventDefault();
     try {
       axios.post("http://localhost:3000/api/logout");
       dispatch({ type: "LogOut" });
@@ -126,11 +127,8 @@ const AdminDashboard = () => {
             Service
           </li>
         </ul>
-        <div
-          style={{ width: "full", display: "flex", justifyContent: "center" }}
-        >
-          <button onClick={handleLogout}>Logout</button>
-        </div>
+
+        <button className="bg-white w-6 text-center text-black active:bg-gray-400" onClick={(e)=>handleLogout(e)}>Logout</button>
       </div>
 
       {/* Content Area */}

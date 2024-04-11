@@ -26,6 +26,7 @@ const [service, setServices] = useState({
 
    
   const handleUpdate = async () => {
+   
     try {
       await axios.put(`http://localhost:3000/api/services/update/${serviceId}`, {   
       title: title,

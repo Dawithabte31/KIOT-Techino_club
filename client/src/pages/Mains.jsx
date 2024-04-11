@@ -20,8 +20,6 @@ export default function Mains() {
    const [members,setMembers] = useState(null);
    const [loadingp,setLoadingp]=useState(true);
    const [loadings,setLoadings]=useState(true);
-   const [loadingm,setLoadingm]=useState(true);
-
   const {search}=useLocation();
   useEffect(()=>{
     const fetchProjects = async()=>{
@@ -66,8 +64,8 @@ export default function Mains() {
           </button>
         </div>
       </main>
-      {loadings?(<Services services={services}/>) : (<div className="text-center"><Skeleton className="mt-3 mb-2" width="30%" height="53px"></Skeleton><Skeleton width="65%" height="530px"></Skeleton></div>)}
-      {loadingp?(<Projects projects={projects} />):(<div className="text-center"><Skeleton className="mt-3 mb-2" width="50%" height="53px"></Skeleton><Skeleton width="70%" height="503px"></Skeleton><Skeleton className="mt-5" width="70%" height="500px"></Skeleton></div>)}
+      {!loadings?(<Services services={services}/>) : (<div className="text-center"><Skeleton className="mt-3 mb-2" width="30%" height="53px"></Skeleton><Skeleton width="65%" height="530px"></Skeleton></div>)}
+      {!loadingp?(<Projects projects={projects} />):(<div className="text-center"><Skeleton className="mt-3 mb-2" width="50%" height="53px"></Skeleton><Skeleton width="70%" height="503px"></Skeleton><Skeleton className="mt-5" width="70%" height="500px"></Skeleton></div>)}
       <Blog members={members}/>
       <Footer/>
     </>

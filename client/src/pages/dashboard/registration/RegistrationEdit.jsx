@@ -18,7 +18,6 @@ const RegistrationEdit = ({ registerId, onClose }) => {
   const [departement, setDepartement] = useState(register.departement);
   const [skill, setSkill] = useState(register.skill);
   const [why, setWhy] = useState(register.why);
-  const [status, setStatus] = useState(register.status);
   useEffect(() => {
     const getRegisterDetails = async () => {
       try {
@@ -33,7 +32,7 @@ const RegistrationEdit = ({ registerId, onClose }) => {
     getRegisterDetails();
   }, [registerId]);
 
-  const handleUpdate = async (registerId) => {
+  const handleUpdate = async () => {
     try {
       await axios.put(
         `http://localhost:3000/api/registers/update/${registerId}`,
@@ -45,11 +44,10 @@ const RegistrationEdit = ({ registerId, onClose }) => {
           depatrtement: departement,
           skill: skill,
           why: why,
-          status: status,
         }
       );
 
-      window.location.href = "/user";
+      window.location.href = "/admin";
       onClose();
     } catch (error) {
       console.log(error);

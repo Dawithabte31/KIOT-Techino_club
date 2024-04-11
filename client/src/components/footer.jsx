@@ -15,8 +15,9 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer--heading">
         <h1>&equiv; TechIno</h1>
-        <p>let's talk about the future</p>
         <AiOutlineSound className="emit" />
+        <p className="mx-3">let's talk about the future</p>
+        
       </div>
 
       <div className="footer--service">
@@ -48,7 +49,7 @@ export default function Footer() {
         </ul>
       </div>
 
-      <div className="phone">
+      <div className="phone mb-6">
         <h2>Contacts</h2>
         <ul>
           <li>

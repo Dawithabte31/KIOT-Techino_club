@@ -18,7 +18,6 @@
 // const membersRoute=require( "./routes/members");
 // require("dotenv").config();
 
-
 // app.use(cors());
 // app.use(express.urlencoded({ extended: true }));
 // app.use(express.static("public"));
@@ -38,7 +37,7 @@
 //       cb(null, req.body.name);
 //     },
 //   });
-  
+
 // const upload= multer({ storage: storage });
 // app.post("/api/upload", upload.single("file"), (req, res) => {
 //   res.status(200).json("File has been uploaded");
@@ -56,14 +55,12 @@
 
 // const port = process.env.PORT || 3000
 // app.listen(port,()=>{
-//   console.log(`server running on port ${port}`) 
+//   console.log(`server running on port ${port}`)
 // });
-
-
 
 const express = require("express");
 const mongoose = require("mongoose");
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
 const app = express();
 const bodyParser = require("body-parser");
 const authRoutes = require("./routes/authRoutes");
@@ -75,7 +72,7 @@ const registerRoute = require("./routes/registers"); // Corrected import path
 const auth = require("./middleware/auth");
 const path = require("path");
 const multer = require("multer");
-const cors = require('cors');
+const cors = require("cors");
 const membersRoute = require("./routes/members");
 require("dotenv").config();
 
@@ -90,37 +87,42 @@ app.use(bodyParser.urlencoded({ limit: "5mb", extended: true }));
 app.use("/images", express.static(path.resolve(__dirname, "src/images")));
 
 // Routes
-mongoose.connect('mongodb://127.0.0.1:27017/Techinoclub')
-    .then(() => { console.log('Database connected'); })
-    .catch((err) => { console.log(err); });
+mongoose
+  .connect("mongodb://127.0.0.1:27017/Techinoclub")
+  .then(() => {
+    console.log("Database connected");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "src/images");
-    },
-    filename: (req, file, cb) => {
-        cb(null, req.body.name);
-    },
+  destination: (req, file, cb) => {
+    cb(null, "src/images");
+  },
+  filename: (req, file, cb) => {
+    cb(null, req.body.name);
+  },
 });
 
-const upload = multer({ storage});
+const upload = multer({ storage });
 
 // File upload route
 app.post("/api/upload", upload.single("file"), (req, res) => {
-    res.status(200).json("File has been uploaded");
+  res.status(200).json("File has been uploaded");
 });
 
 // API routes
-app.use('/api', userRoute);
-app.use('/api', authRoutes);
-app.use('/api/events', eventRoute);
-app.use('/api/projects', projectRoute);
-app.use('/api/services', serviceRoute);
-app.use('/api/members', membersRoute);
-app.use('/api/registers', registerRoute);
+app.use("/api", userRoute);
+app.use("/api", authRoutes);
+app.use("/api/events", eventRoute);
+app.use("/api/projects", projectRoute);
+app.use("/api/services", serviceRoute);
+app.use("/api/members", membersRoute);
+app.use("/api/registers", registerRoute);
 
 // Start server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });

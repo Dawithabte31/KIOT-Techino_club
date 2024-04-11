@@ -5,7 +5,6 @@ import { NavLink } from "react-router-dom";
 
 
 const ServicesTable = () => {
-
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [selectedServiceId, setSelectedServiceId] = useState(null);
   const [services, setServices] = useState([]);
