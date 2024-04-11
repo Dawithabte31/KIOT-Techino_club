@@ -52,8 +52,15 @@ const RegiterTable = () => {
       console.error("Error updating member:", error);
     }
   };
-  const handleUpdatestatus = async (registerId,username) => {
+  const handleUpdatestatus = async (registerId) => {
+    console.log(registerId)
+    console.log(user.user.username)
+
     try {
+      if (user.user.role !== 1) {
+        console.error("Only admin users can update the status.");
+        return;
+      }
       // Send a PUT request to update the register status to "registered"
       await axios.put(
         `http://localhost:3000/api/registers/update/${registerId}`,

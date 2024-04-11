@@ -1412,7 +1412,7 @@ margin-bottom: 150px;
   border-bottom: 2px solid rgb(12, 69, 122);
   
 }
-@media (max-width: 500px) {
+/* @media (max-width: 500px) {
   .event h1{
 margin-bottom: 0px;
 margin-top: 40px;
@@ -1495,8 +1495,8 @@ margin-top: -50px;
     }
 }
 
-/* Target medium screens */
-@media (min-width: 601px) and (max-width: 950px) {
+Target medium screens */
+/* @media (min-width: 601px) and (max-width: 950px) {
   .event h1{
 margin-bottom: 20px;
     
@@ -1534,7 +1534,7 @@ width: 90%;
 margin-top: -60px;
 
   }
-}
+} */
 
 
 

@@ -1,6 +1,5 @@
 const router = require("express").Router();
-const Register= require("../models/Registers");  
-
+const Register = require("../models/Registers");
 
 //Create Post
 router.post("/create", async (req, res) => {
@@ -18,7 +17,7 @@ router.get("/get/:id", async (req, res) => {
     const singleregister = await Register.findById(req.params.id);
     res.status(200).json(singleregister);
   } catch (err) {
-    console.error('Error in /api/register/create:', error);
+    console.error("Error in /api/register/create:", error);
     res.status(500).json(err);
   }
 });
@@ -26,9 +25,9 @@ router.get("/get/:id", async (req, res) => {
 router.put("/update/:id", async (req, res) => {
   try {
     const register = await Register.findById(req.params.id);
-    if (register.username === req.body.username) {
+    if (register.username === req.body.username || "admin") {
       try {
-        const updatedRegister= await Register.findByIdAndUpdate(
+        const updatedRegister = await Register.findByIdAndUpdate(
           req.params.id,
           {
             $set: req.body,
@@ -41,7 +40,6 @@ router.put("/update/:id", async (req, res) => {
       }
     } else {
       res.status(401).json("You can update only your post!");
-      
     }
   } catch (err) {
     res.status(500).json(err);
@@ -51,30 +49,30 @@ router.put("/update/:id", async (req, res) => {
 //DELETE POST
 router.delete("/delete/:id", async (req, res) => {
   try {
-    const register = await Register.findById(req.params.id);
-    if (register.username === req.body.username) {
+    // const register = await Register.findById(req.params.id);
+    // if (register.username === req.body.username) {
       try {
         await Register.findByIdAndDelete(req.params.id);
         res.status(200).json("Post has been deleted...");
       } catch (err) {
         res.status(500).json(err);
       }
-    } else {
-      res.status(401).json("You can delete only your post!");
-    }
+    // } else {
+    //   res.status(401).json("You can delete only your post!");
+    // }
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 //GET ALL POSTS
-router.get('/allregisters', async (req, res) => {
-    try {
-      const registers = await Register.find();
-      res.status(200).json(registers);
-    } catch (error) {
-      res.status(500).json(error);
-    }
-  });
+router.get("/allregisters", async (req, res) => {
+  try {
+    const registers = await Register.find();
+    res.status(200).json(registers);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 module.exports = router;

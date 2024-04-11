@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Context } from "../../../context/Context";
 import { useContext } from "react";
+import { Button } from "primereact/button";
 function AddRegistration() {
   const { user } = useContext(Context);
   const [fullname, setFullname] = useState("");
@@ -11,11 +12,20 @@ function AddRegistration() {
   const [departement, setDepartement] = useState("");
   const [skill, setSkill] = useState("");
   const [why, setWhy] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const load = () => {
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  };
 
   const handleAdd = async () => {
     try {
       await axios.post("http://localhost:3000/api/registers/create", {
-        username:user.user.username,
+        username: user.user.username,
         fullname: fullname,
         age: age,
         sex: sex,
@@ -35,7 +45,10 @@ function AddRegistration() {
       console.log(error);
     }
   };
-
+  const handleButtonClick = () => {
+    load(); // Call the load function
+    handleAdd(); // Call the handleAdd function
+  };
   return (
     <div className="add-event">
       <div
@@ -122,7 +135,7 @@ function AddRegistration() {
             padding: "8px",
             marginBottom: "15px",
           }}
-          placeholder={"You skill.."}
+          placeholder={"Your skill.."}
           type="textarea"
           onChange={(e) => setSkill(e.target.value)}
         />
@@ -137,20 +150,16 @@ function AddRegistration() {
           type="textarea"
           onChange={(e) => setWhy(e.target.value)}
         ></textarea>
-        <button
-          style={{
-            backgroundColor: "#4CAF50",
-            color: "white",
-            padding: "10px 15px",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-            marginLeft: "80%",
-          }}
-          onClick={handleAdd}
-        >
-          Submit
-        </button>
+        <div className="card flex flex-wrap justify-content-center gap-3">
+          <Button
+            className="bg-gray-500 text-white p-2"
+            label="Submit"
+            icon="pi pi-check"
+            loading={loading}
+            onClick={handleButtonClick}
+
+          />
+        </div>
       </div>
     </div>
   );
