@@ -3,7 +3,6 @@ const { Schema } = mongoose;
 
 const MessageSchema = new Schema(
   {
-   
        name: {
         type: String,
         required: true,

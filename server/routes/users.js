@@ -6,7 +6,6 @@ const bcrypt = require("bcrypt");
 //GET USER
 router.get("/get/:id", async (req, res) => {
   try {
-  
     const user = await User.findById(req.params.id);
     const { password, ...others } = user._doc;
     res.status(200).json(others);
@@ -16,6 +15,7 @@ router.get("/get/:id", async (req, res) => {
 });
 
 //UPDATE
+
 router.put("/update/:id", async (req, res) => {
   if (req.body.userId === req.params.id) {
     if (req.body.password) {
@@ -38,6 +38,5 @@ router.put("/update/:id", async (req, res) => {
     res.status(401).json("You can update only your account!");
   }
 });
-
 
 module.exports = router;

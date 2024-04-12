@@ -10,6 +10,7 @@ const ProjectSchema = new Schema(
       desc: {
         type: String,
         required: true,
+        
       }
       ,
       photo: {

@@ -42,23 +42,23 @@ function Login() {
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post("http://localhost:3000/api/login", {
-        username: userRef.current.value,
+        //username: userRef.current.value,
         password: passwordRef.current.value,
-        Email:    emailrRef.current.value
+        Email: emailrRef.current.value,
       });
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
-      res.data && window.location.replace('/');
-
+       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+       res.data && window.location.replace('/');
     } catch (error) {
       dispatch({ type: "LOGIN_FAILURE" });
     }
   };
+
   return (
     <>
     <div className="login">
       <form className="inputs" onSubmit={handleSubmit}>
         <h1 className="title">Welcome To TechIno</h1>
-        <input
+        {/* <input
           type="text"
           placeholder="Username"
           className="input"
@@ -67,7 +67,7 @@ function Login() {
           // value={inputs.userName}
           // onChange={handleChange}
           // required
-        />
+        /> */}
 
         <input
           // type="email"
@@ -91,7 +91,7 @@ function Login() {
             // value={inputs.password}
             // name="password"
             // onChange={handleChange}
-            onFocus={handleFocus}
+          onFocus={handleFocus}
             // required
           className="input"
           type="password"
@@ -105,13 +105,11 @@ function Login() {
             </span>
           )}
         </div>
-
         <button className="signIn" type="submit" disabled={isFetching}>Sign in</button>
         <p>
           Don't have an account <Link to="/signup">SignUp</Link>
         </p>
       </form>
-
     </div>
     <Footer/>
     </>
