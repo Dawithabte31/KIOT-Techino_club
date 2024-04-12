@@ -44,7 +44,7 @@ function Login() {
       const res = await axios.post("http://localhost:3000/api/login", {
         //username: userRef.current.value,
         password: passwordRef.current.value,
-        Email: emailrRef.current.value,
+        email: emailrRef.current.value,
       });
        dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
        res.data && window.location.replace('/');

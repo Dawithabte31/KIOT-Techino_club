@@ -33,24 +33,43 @@ exports.register = async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+  
 };
-exports.login = async (req, res) => {
+exports.login = async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.body.email });
-    !user && res.status(400).json("Wrong credentials!");
-    const validated = await bcrypt.compare(req.body.password, user.password);
-    // !validated && res.status(400).json("Wrong credentials!");
-    // const { password, ...others } = user._doc;
-    // res.status(200).json(others);
-    if (!validated) {
-      return next(new ErrorResponse("invalid credentials", 400));
+    if (!user) {
+      return next(new ErrorResponse("Wrong credentials!", 400));
     }
+
+    const validated = await bcrypt.compare(req.body.password, user.password);
+    if (!validated) {
+      return next(new ErrorResponse("Invalid credentials", 400));
+    }
+
     sendTokenResponse(user, 200, res);
   } catch (err) {
-    res.status(500).json(err);
-    alert("check your email and password again!!");
+    console.error(err);
+    res.status(500).json({ success: false, message: "Server Error" });
   }
 };
+// exports.login = async (req, res) => {
+//   try {
+//     const user = await User.findOne({ email: req.body.email });
+//     !user && res.status(400).json("Wrong credentials!");
+//     const validated = await bcrypt.compare(req.body.password, user.password);
+//     // !validated && res.status(400).json("Wrong credentials!");
+//     // const { password, ...others } = user._doc;
+//     // res.status(200).json(others);
+//     if (!validated) {
+//       return next(new ErrorResponse("invalid credentials", 400));
+//     }
+//     sendTokenResponse(user, 200, res);
+//   } catch (err) {
+//     res.status(500).json(err);
+//     alert("check your email and password again!!");
+//   }
+// };
 
 const sendTokenResponse = async (user, codeStatus, res) => {
   const token = await user.getJwtToken();
