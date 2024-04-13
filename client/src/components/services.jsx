@@ -18,7 +18,7 @@ export default function services({ services }) {
       <h1 className="services--header">Services we provide</h1>
       <Slider {...settings}>
         {services &&
-          services.map((service) => (
+          services.map((service, key) => (
             <div className="services">
               <div className="services--image">
                 {service.photo && (
@@ -30,7 +30,9 @@ export default function services({ services }) {
                 )}
               </div>
               <div className="service--message">
-                <div className="services--title">{service.title}</div>
+                <div key={service._id} className="services--title">
+                  {service.title}
+                </div>
                 <div className="services--description">
                   {service.description}
                 </div>

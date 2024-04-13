@@ -89,7 +89,8 @@ app.use("/images", express.static(path.resolve(__dirname, "src/images")));
 
 // Routes
 mongoose
-  .connect("mongodb://127.0.0.1:27017/Techinoclub")
+  // .connect("mongodb://127.0.0.1:27017/Techinoclub")
+  .connect(process.env.MONGO_DB)
   .then(() => {
     console.log("Database connected");
   })

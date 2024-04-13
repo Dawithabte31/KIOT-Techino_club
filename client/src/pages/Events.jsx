@@ -1,3 +1,7 @@
+
+
+
+
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -24,39 +28,36 @@ function Events() {
   const PF = "http://localhost:3000/images/";
 
   return (
-    <div className="bg-gray-300">
-      <div className="event h-full">
-        <h2 className="text-gray-500 h-40 flex justify-center text-5xl font-semibold">
-          EVENTS
-        </h2>
-        <div className="flex flex-wrap justify-center">
+    <div>
+    <section className="py-32">
+      <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+        <ul className="grid gap-x-8 gap-y-10 mt-16 sm:grid-cols-2 lg:grid-cols-3">
           {!loading ? (
             events &&
-            events.map((event, index) => (
-              <div
-                key={index}
-                className="event-wrapp w-full sm:w-1/3 md:w-1/3 lg:w-1/4 xl:w-1/5 px-4 mb-8"
-              >
-                {event.photo && (
-                  <div className="object-cover w-full h-full">
+            events.map((event, key) => (
+              <li className="w-full mx-auto group sm:max-w-sm" key={key}>
+                <a href={event.href}>
+                  {event.photo && (
                     <img
-                      className="w-full h-full object-cover"
                       src={PF + event.photo}
-                      alt="pic"
+                      loading="lazy"
+                      alt="image"
+                      className="w-full rounded-lg"
                     />
+                  )}
+                  <div className="mt-3 space-y-2">
+                    <span className="block text-indigo-600 text-sm">
+                      {new Date(event.createdAt).toDateString()}
+                    </span>
+                    <h3 className="text-lg text-gray-800 duration-150 group-hover:text-indigo-600 font-semibold">
+                      {event.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm duration-150 group-hover:text-gray-800">
+                      {event.desc}
+                    </p>
                   </div>
-                )}
-                <div className="event-content w-full">
-                  <h2 className="text-xl font-semibold mb-2">{event.title}</h2>
-                  <p className="text-sm">{event.desc}</p>
-                  <a
-                    className="block mt-2 text-center text-blue-500 hover:text-blue-700"
-                    href="http://localhost:5173/login"
-                  >
-                    Join
-                  </a>
-                </div>
-              </div>
+                </a>
+              </li>
             ))
           ) : (
             <div className="text-center w-full">
@@ -72,12 +73,14 @@ function Events() {
               ></Skeleton>
             </div>
           )}
-        </div>
+        </ul>
       </div>
-
-      <Footer />
+    </section>
+    <Footer />
     </div>
   );
 }
 
 export default Events;
+
+

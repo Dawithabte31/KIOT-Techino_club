@@ -25,17 +25,17 @@ export default function Mains() {
     const fetchProjects = async()=>{
     const res = await axios.get('http://localhost:3000/api/projects/allprojects' +  search)
     setProjects(res.data);
-    setLoadingp(false);
+      setLoadingp(false);
     }
     const fetchServices = async()=>{
       const res = await axios.get('http://localhost:3000/api/services/allservices' +  search)
       setServices(res.data);
-      setLoadings(false);
+        setLoadings(false);
       }
      const fetchMembers = async()=>{
         const res = await axios.get('http://localhost:3000/api/members/allmembers' +  search)
         setMembers(res.data);
-        setLoadingm(false);
+       
         }
         
     fetchMembers()

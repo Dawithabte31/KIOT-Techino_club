@@ -48,13 +48,12 @@ function Blog({members}) {
       <Slider {...settings}>
         {members && members.map((member) => (
           <div className="profile">
-            <div className="profile--image">
+            <div className="profile--image  ">
               <img src={PF + member.photo} alt={`image of ${member.fullname}`} />
             </div>
-            <div className="profile--notation">
-              <p className="profile--name">{member.fullname}</p>
-              <p className="profile--description">{member.desc}</p>
-              <a className="bn5">Read More</a>
+            <div className="profile--notation border-spacing-x-4">
+              <h3 className="profile--name text-center text-xl font-medium font-mono ">{member.fullname}</h3>
+              <p className="profile--description text-center text-gray-900">{member.desc}</p>
             </div>
           </div>
         ))}

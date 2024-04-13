@@ -65,13 +65,13 @@ router.delete("/delete/:id", async (req, res) => {
 });
 
 //GET ALL POSTS
-router.get('/allservices', async (req, res) => {
-    try {
-      const services = await Service.find();
-      res.status(200).json(services);
-    } catch (error) {
-      res.status(500).json(error);
-    }
-  });
+router.get("/allservices", async (req, res) => {
+  try {
+    const services = await Service.find();
+    res.status(200).json(services);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 module.exports = router;
