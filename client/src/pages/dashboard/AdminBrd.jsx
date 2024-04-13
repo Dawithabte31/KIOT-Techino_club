@@ -5,6 +5,7 @@ import EventsTable from "./Event/EventsTable";
 import ProjectsTable from "./project/ProjectsTable";
 import RegistrationTable from "./registration/RegistrationTable";
 import ServicesTable from "./service/ServicesTable";
+import MessagesTable from "./message/MessagesTable";
 import axios from "axios";
 
 const AdminDashboard = () => {
@@ -34,6 +35,8 @@ const AdminDashboard = () => {
         return <RegistrationTable />;
       case "Service":
         return <ServicesTable />;
+      case "Message":
+        return <MessagesTable />;
       default:
         return null;
     }
@@ -57,6 +60,7 @@ const AdminDashboard = () => {
         </h2>
         <ul style={{ listStyle: "none", padding: 0 }}>
           <li
+            className="hover:bg-white hover:text-black"
             style={{
               padding: "10px",
               cursor: "pointer",
@@ -65,12 +69,11 @@ const AdminDashboard = () => {
               opacity: 1,
             }}
             onClick={() => setSelectedMenuItem("Members")}
-            onMouseEnter={(e) => (e.target.style.backgroundColor = "white")}
-            onMouseLeave={(e) => (e.target.style.backgroundColor = "#2c3e50")}
           >
             Members
           </li>
           <li
+            className="hover:bg-white hover:text-black"
             style={{
               padding: "10px",
               cursor: "pointer",
@@ -79,12 +82,11 @@ const AdminDashboard = () => {
               opacity: 1,
             }}
             onClick={() => setSelectedMenuItem("Events")}
-            onMouseEnter={(e) => (e.target.style.backgroundColor = "white")}
-            onMouseLeave={(e) => (e.target.style.backgroundColor = "#2c3e50")}
           >
             Events
           </li>
           <li
+            className="hover:bg-white hover:text-black"
             style={{
               padding: "10px",
               cursor: "pointer",
@@ -93,12 +95,11 @@ const AdminDashboard = () => {
               opacity: 1,
             }}
             onClick={() => setSelectedMenuItem("Projects")}
-            onMouseEnter={(e) => (e.target.style.backgroundColor = "white")}
-            onMouseLeave={(e) => (e.target.style.backgroundColor = "#2c3e50")}
           >
             Projects
           </li>
           <li
+            className="hover:bg-white hover:text-black"
             style={{
               padding: "10px",
               cursor: "pointer",
@@ -107,8 +108,6 @@ const AdminDashboard = () => {
               opacity: 1,
             }}
             onClick={() => setSelectedMenuItem("Registration")}
-            onMouseEnter={(e) => (e.target.style.backgroundColor = "white")}
-            onMouseLeave={(e) => (e.target.style.backgroundColor = "#2c3e50")}
           >
             Registration
           </li>
@@ -121,17 +120,32 @@ const AdminDashboard = () => {
               opacity: 1,
             }}
             onClick={() => setSelectedMenuItem("Service")}
-            onMouseEnter={(e) => (e.target.style.backgroundColor = "white")}
-            onMouseLeave={(e) => (e.target.style.backgroundColor = "#2c3e50")}
+            className="hover:bg-white hover:text-black"
           >
             Service
           </li>
+          <li
+            className="hover:bg-white hover:text-black"
+            style={{
+              padding: "10px",
+              cursor: "pointer",
+              borderBottom: "1px solid #34495e",
+              transition: "background-color 0.3s ease, opacity 0.3s ease",
+              opacity: 1,
+            }}
+            onClick={() => setSelectedMenuItem("Message")}
+          >
+            Message
+          </li>
         </ul>
 
-        <button className="bg-white w-6 text-center text-black active:bg-gray-400" onClick={(e)=>handleLogout(e)}>Logout</button>
+        <button
+          className="bg-white w-6 text-center text-black active:bg-gray-400 mt-8"
+          onClick={(e) => handleLogout(e)}
+        >
+          Logout
+        </button>
       </div>
-
-      {/* Content Area */}
       <div style={{ flex: 1, padding: "20px", backgroundColor: "#ecf0f1" }}>
         {renderContent()}
       </div>

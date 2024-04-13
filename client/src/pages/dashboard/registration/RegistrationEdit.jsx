@@ -47,7 +47,7 @@ const RegistrationEdit = ({ registerId, onClose }) => {
         }
       );
 
-      window.location.href = "/admin";
+      window.location.href = "/user";
       onClose();
     } catch (error) {
       console.log(error);

@@ -3,8 +3,6 @@ import RegistrationTable from "./registration/RegistrationTable";
 import { Context } from "../../context/Context";
 import axios from "axios";
 
-// import { Context } from './context/Context';
-
 const UserBrd = () => {
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
 
@@ -18,7 +16,8 @@ const UserBrd = () => {
   };
 
   const { dispatch } = useContext(Context);
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+    e.preventDefault();
     try {
       axios.post("http://localhost:3000/api/logout");
       dispatch({ type: "LogOut" });
@@ -50,6 +49,7 @@ const UserBrd = () => {
         </h2>
         <ul style={{ listStyle: "none", padding: 0 }}>
           <li
+            className="hover:bg-white hover:text-black"
             style={{
               padding: "10px",
               cursor: "pointer",
@@ -58,14 +58,17 @@ const UserBrd = () => {
               opacity: 1,
             }}
             onClick={() => setSelectedMenuItem("Registration")}
-            onMouseEnter={(e) => (e.target.style.backgroundColor = "white")}
-            onMouseLeave={(e) => (e.target.style.backgroundColor = "#2c3e50")}
           >
             Registration
           </li>
         </ul>
 
-        <button className="bg-white w-6 text-center text-black active:bg-gray-400" onClick={handleLogout}>Logout</button>
+        <button
+          className="bg-white w-6 text-center text-black active:bg-gray-400 mt-8"
+          onClick={(e) => handleLogout(e)}
+        >
+          Logout
+        </button>
       </div>
       <div style={{ flex: 1, padding: "20px", backgroundColor: "#ecf0f1" }}>
         {renderContent()}
