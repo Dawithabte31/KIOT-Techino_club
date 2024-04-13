@@ -7,6 +7,7 @@ import RegistrationTable from "./registration/RegistrationTable";
 import ServicesTable from "./service/ServicesTable";
 import MessagesTable from "./message/MessagesTable";
 import axios from "axios";
+import Registered from "./registeredusers/Registered";
 
 const AdminDashboard = () => {
   const { dispatch } = useContext(Context);
@@ -37,6 +38,8 @@ const AdminDashboard = () => {
         return <ServicesTable />;
       case "Message":
         return <MessagesTable />;
+      case "MembersList":
+        return <Registered/>
       default:
         return null;
     }
@@ -71,6 +74,19 @@ const AdminDashboard = () => {
             onClick={() => setSelectedMenuItem("Members")}
           >
             Members
+          </li>
+          <li
+            className="hover:bg-white hover:text-black"
+            style={{
+              padding: "10px",
+              cursor: "pointer",
+              borderBottom: "1px solid #34495e",
+              transition: "background-color 0.3s ease, opacity 0.3s ease",
+              opacity: 1,
+            }}
+            onClick={() => setSelectedMenuItem("MembersList")}
+          >
+            Members List
           </li>
           <li
             className="hover:bg-white hover:text-black"
