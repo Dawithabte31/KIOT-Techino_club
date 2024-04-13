@@ -39,7 +39,7 @@ const AdminDashboard = () => {
       case "Message":
         return <MessagesTable />;
       case "MembersList":
-        return <Registered/>
+        return <Registered/>;
       default:
         return null;
     }
