@@ -2,13 +2,11 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const ErrorResponse = require("../utils/errorResponse");
-const jwt = require("jsonwebtoken");
-const cookieParser = require("jsonwebtoken");
 
+//register
 exports.register = async (req, res) => {
   try {
     const emailvalidate = await User.findOne({ email: req.body.email });
-
     if (emailvalidate) {
       return new ErrorResponse(`Email already in use`, 400).sendError(res);
     } else {
@@ -33,8 +31,8 @@ exports.register = async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-  
 };
+//login
 exports.login = async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.body.email });
@@ -53,24 +51,6 @@ exports.login = async (req, res, next) => {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
-// exports.login = async (req, res) => {
-//   try {
-//     const user = await User.findOne({ email: req.body.email });
-//     !user && res.status(400).json("Wrong credentials!");
-//     const validated = await bcrypt.compare(req.body.password, user.password);
-//     // !validated && res.status(400).json("Wrong credentials!");
-//     // const { password, ...others } = user._doc;
-//     // res.status(200).json(others);
-//     if (!validated) {
-//       return next(new ErrorResponse("invalid credentials", 400));
-//     }
-//     sendTokenResponse(user, 200, res);
-//   } catch (err) {
-//     res.status(500).json(err);
-//     alert("check your email and password again!!");
-//   }
-// };
-
 const sendTokenResponse = async (user, codeStatus, res) => {
   const token = await user.getJwtToken();
   res
@@ -87,11 +67,4 @@ exports.logout = (req, res, next) => {
     message: "Logged out",
   });
 };
-exports.userProfile = async (req, res, next) => {
-  const user = await User.findById(req.user.id).select("-password");
 
-  res.status(200).json({
-    success: true,
-    user,
-  });
-};

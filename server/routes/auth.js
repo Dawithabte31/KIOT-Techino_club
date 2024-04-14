@@ -38,10 +38,8 @@ router.post("/register", async (req, res) => {
 
       const { password, ...others } = user._doc;
       res.status(200).json(others);
-
       // generet JWt token
       sendTokenResponse(user, 200, res);
-
     } catch (err) {
       res.status(500).json(err);
     }
