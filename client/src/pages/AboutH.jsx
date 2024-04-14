@@ -8,14 +8,11 @@ function AboutH() {
        <h1 className='about_h text-5xl font-semibold text-blue-800'>
         ABOUT US
        </h1>
-        <p className='self-center text-start w-7 italic  text-clip ' >
- Lorem ipsum dolor sit amet consectetur adipisicing elit.
- Dolorum, laudantium eaque esse aliquid molestiae numquam
- commodi autem error dicta hic eligendi officiis quodrecus
- andae id quasi sint similique voluptatem quam! Lorem ipsum 
- dolor sit amet consectetur adipisicing elit. Autem nihil animi
- atque tempora dolorem? Nobis numquam totam consequatur corrupti vel 
- quo, deserunt blanditiis qui incidunt, fuga sint vitae molestias quasi.
+        <p className='self-center text-start w-9 italic  text-clip ' >
+        Welcome to Techino Club, the premier technology community at Wollo University. Founded by students and fueled by innovation, we're dedicated to empowering students to excel in the ever-evolving world of technology.
+At Techino Club, we're more than just a club—we're a supportive community where students come together to learn, collaborate, and grow. From coding workshops to hackathons, we offer a wide range of opportunities for students to sharpen their skills and make a difference.
+Our mission is simple: to foster creativity, inspire innovation, and drive positive change. Through our projects and initiatives, we aim to tackle real-world challenges and make a meaningful impact in our university and beyond.
+Join us at Techino Club and unleash your potential. Together, let's innovate, create, and shape the future of technology. Welcome to Techino Club—where ideas become reality.
        </p>
        </div>
 

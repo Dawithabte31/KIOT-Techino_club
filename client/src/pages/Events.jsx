@@ -29,7 +29,8 @@ function Events() {
 
   return (
     <div>
-    <section className="py-32">
+    <section className="py-32 ">
+      <h1 className="about_h text-5xl font-semibold text-blue-800 flex justify-center mb-15 ">OUR EVENTS</h1>
       <div className="max-w-screen-xl mx-auto px-4 md:px-8">
         <ul className="grid gap-x-8 gap-y-10 mt-16 sm:grid-cols-2 lg:grid-cols-3">
           {!loading ? (

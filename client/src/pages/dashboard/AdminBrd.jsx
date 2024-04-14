@@ -56,7 +56,7 @@ const AdminDashboard = () => {
           backgroundColor: "#2c3e50",
           color: "#ecf0f1",
           padding: "20px",
-        }}
+         }}
       >
         <h2 className="my-4  flex justify-center h-auto w-auto font-extrabold">
           Admin Dashboard

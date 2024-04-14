@@ -4,6 +4,7 @@ import { Context } from "../../context/Context";
 import axios from "axios";
 
 const UserBrd = () => {
+  const { user } = useContext(Context);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
 
   const renderContent = () => {
@@ -45,7 +46,7 @@ const UserBrd = () => {
         <h2
           style={{ fontSize: "1.5rem", marginBottom: "20px", color: "#ecf0f1" }}
         >
-          User
+          {user.user.username}
         </h2>
         <ul style={{ listStyle: "none", padding: 0 }}>
           <li

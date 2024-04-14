@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
-// import logo from "../images/circular logos.png";
+import logo from "../images/circular logos.png";
 import debounce from "lodash.debounce";
 import { Link, NavLink } from "react-router-dom";
-import { useContext } from 'react'
-import {Context} from '../context/Context'
+import { useContext } from "react";
+import { Context } from "../context/Context";
 export default function Navbar() {
-  const {user}=useContext(Context)
+  const { user } = useContext(Context);
   const [showMenu, setShowMenu] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   useEffect(() => {
@@ -35,18 +35,17 @@ export default function Navbar() {
       setShowMenu(false);
     }
   }
-  
 
   function handleHamburger() {
     setShowMenu((prev) => !prev);
   }
   console.log("User:", user); // Check if user context is accessible
-  console.log("User Role:", user && user.user.role);  
+  console.log("User Role:", user && user.user.role);
   return (
     <nav className="menu-items ">
       <div className="logo " onClick={handleMenuItemClick}>
         <Link to="/">
-               {/* <img src={log} alt="logo of TECHINO" className="logo__image" /> */}
+          <img src={logo} alt="logo of TECHINO" className="logo__image" />
         </Link>
       </div>
       <div className={`hamburger `} onClick={handleHamburger}>
@@ -57,12 +56,12 @@ export default function Navbar() {
         )}
       </div>
 
-      <ul className={showMenu ? "open" : "close" }>
+      <ul className={showMenu ? "open" : "close"}>
         <NavLink
           to="/"
           className={({ isActive }) => {
             return isActive ? "link active" : "link";
-          } }
+          }}
           onClick={handleMenuItemClick}
         >
           Home
@@ -79,54 +78,57 @@ export default function Navbar() {
         <NavLink
           to="/event"
           className={({ isActive }) => {
-                return isActive ? "link active" : "link";
+            return isActive ? "link active" : "link";
           }}
           onClick={handleMenuItemClick}
         >
           Event
         </NavLink>
-       {!user? ( <NavLink
-          to="/login"
-          className={({ isActive }) => {
-            return isActive ? "link active" : "link";
-          }}
-          onClick={handleMenuItemClick}
-        >
-          Login
-        </NavLink>):null}
-        
-      {!user? (<NavLink
-        to="/signup"
-        className={({ isActive }) => {
-          return isActive ? "link active" : "link";
-        }}
-        onClick={handleMenuItemClick}
-      >
-        Signup
-      </NavLink>):null}
-       {( <NavLink
-          to="/contact"
-          className={({ isActive }) => {
-            return isActive ? "link active" : "link";
-          }}
-          onClick={handleMenuItemClick}
-        >
-          Contact us
-        </NavLink>)}
-        {user? (
-  <NavLink
-    to={user.user && (user.user.role? "/admin" : "/user")}
-    className={({ isActive }) => {
-      return isActive ? "link active" : "link";
-    }}
-    onClick={handleMenuItemClick}
-  >
-    <span className="material-symbols-outlined">
-      account_circle
-    </span>
-  </NavLink>
-) : null}
+        {!user ? (
+          <NavLink
+            to="/login"
+            className={({ isActive }) => {
+              return isActive ? "link active" : "link";
+            }}
+            onClick={handleMenuItemClick}
+          >
+            Login
+          </NavLink>
+        ) : null}
 
+        {!user ? (
+          <NavLink
+            to="/signup"
+            className={({ isActive }) => {
+              return isActive ? "link active" : "link";
+            }}
+            onClick={handleMenuItemClick}
+          >
+            Signup
+          </NavLink>
+        ) : null}
+        {
+          <NavLink
+            to="/contact"
+            className={({ isActive }) => {
+              return isActive ? "link active" : "link";
+            }}
+            onClick={handleMenuItemClick}
+          >
+            Contact us
+          </NavLink>
+        }
+        {user ? (
+          <NavLink
+            to={user.user && (user.user.role ? "/admin" : "/user")}
+            className={({ isActive }) => {
+              return isActive ? "link active" : "link";
+            }}
+            onClick={handleMenuItemClick}
+          >
+            <span className="material-symbols-outlined">account_circle</span>
+          </NavLink>
+        ) : null}
       </ul>
     </nav>
   );

@@ -1,4 +1,3 @@
-
 const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
@@ -63,7 +62,7 @@ app.use("/api/projects", projectRoute);
 app.use("/api/services", serviceRoute);
 app.use("/api/members", membersRoute);
 app.use("/api/registers", registerRoute);
-app.use("/api/messages",messageRoute);
+app.use("/api/messages", messageRoute);
 
 // Start server
 const port = process.env.PORT || 3000;
