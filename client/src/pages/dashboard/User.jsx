@@ -3,10 +3,9 @@ import RegistrationTable from "./registration/RegistrationTable";
 import { Context } from "../../context/Context";
 import axios from "axios";
 
-const UserBrd = () => {
+const User = () => {
   const { user } = useContext(Context);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
-
   const renderContent = () => {
     switch (selectedMenuItem) {
       case "Registration":
@@ -79,4 +78,4 @@ const UserBrd = () => {
   );
 };
 
-export default UserBrd;
+export default User;

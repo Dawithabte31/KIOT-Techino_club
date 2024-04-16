@@ -9,7 +9,8 @@ import MessagesTable from "./message/MessagesTable";
 import axios from "axios";
 import Registered from "./registeredusers/Registered";
 
-const AdminDashboard = () => {
+
+const Admin = () => {
   const { dispatch } = useContext(Context);
   const handleLogout = (e) => {
     e.preventDefault();
@@ -170,4 +171,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default Admin;

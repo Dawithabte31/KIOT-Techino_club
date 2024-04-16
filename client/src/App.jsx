@@ -6,8 +6,8 @@ import AddEvent from "./pages/dashboard/Event/AddEvent";
 import AddProject from "./pages/dashboard/project/AddProject";
 import AddMember from "./pages/dashboard/member/AddMember";
 import AddRegistration from "./pages/dashboard/registration/AddRegistration";
-import AdminBrd from "./pages/dashboard/AdminBrd";
-import UserBrd from "./pages/dashboard/UserBrd";
+import Admin from "./pages/dashboard/Admin";
+import User from "./pages/dashboard/User";
 import AddService from "./pages/dashboard/service/AddService";
 import Mains from "./pages/Mains";
 import Login from "./pages/Login";
@@ -35,8 +35,8 @@ function App() {
           <Route path="contact" element={<ContactUs />} />
           <Route path="about" element={<AboutH />} />
           <Route path="event" element={<Events />} />
-          <Route path="admin" element={<AdminBrd /> } />
-          <Route path="user" element={<UserBrd /> } />
+          <Route path="admin" element={<Admin /> } />
+          <Route path="user" element={<User /> } />
           <Route path="/addmember" element={<AddMember />} />
           <Route path="/addevent" element={<AddEvent />} />
           <Route path="/addproject" element={<AddProject />} />
