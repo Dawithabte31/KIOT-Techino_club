@@ -46,6 +46,7 @@ const UserBrd = () => {
         <h2
           style={{ fontSize: "1.5rem", marginBottom: "20px", color: "#ecf0f1" }}
         >
+          <span class="material-symbols-outlined mr-2 ml-1">person</span>
           {user.user.username}
         </h2>
         <ul style={{ listStyle: "none", padding: 0 }}>
@@ -65,7 +66,7 @@ const UserBrd = () => {
         </ul>
 
         <button
-          className="bg-white w-6 text-center text-black active:bg-gray-400 mt-8"
+          className="bg-white w-6 text-center text-black active:bg-gray-400 mt-8 m-3 border-round "
           onClick={(e) => handleLogout(e)}
         >
           Logout

@@ -39,7 +39,7 @@ const AdminDashboard = () => {
       case "Message":
         return <MessagesTable />;
       case "MembersList":
-        return <Registered/>;
+        return <Registered />;
       default:
         return null;
     }
@@ -56,14 +56,15 @@ const AdminDashboard = () => {
           backgroundColor: "#2c3e50",
           color: "#ecf0f1",
           padding: "20px",
-         }}
+        }}
       >
         <h2 className="my-4  flex justify-center h-auto w-auto font-extrabold">
-          Admin Dashboard
+          <span class="material-symbols-outlined">person</span>
+          Admin
         </h2>
         <ul style={{ listStyle: "none", padding: 0 }}>
           <li
-            className="hover:bg-white hover:text-black"
+            className="hover:bg-white hover:text-black text-center"
             style={{
               padding: "10px",
               cursor: "pointer",
@@ -76,7 +77,7 @@ const AdminDashboard = () => {
             Members
           </li>
           <li
-            className="hover:bg-white hover:text-black"
+            className="hover:bg-white hover:text-black text-center"
             style={{
               padding: "10px",
               cursor: "pointer",
@@ -89,7 +90,7 @@ const AdminDashboard = () => {
             Members List
           </li>
           <li
-            className="hover:bg-white hover:text-black"
+            className="hover:bg-white hover:text-black text-center"
             style={{
               padding: "10px",
               cursor: "pointer",
@@ -102,7 +103,7 @@ const AdminDashboard = () => {
             Events
           </li>
           <li
-            className="hover:bg-white hover:text-black"
+            className="hover:bg-white hover:text-black text-center"
             style={{
               padding: "10px",
               cursor: "pointer",
@@ -115,7 +116,7 @@ const AdminDashboard = () => {
             Projects
           </li>
           <li
-            className="hover:bg-white hover:text-black"
+            className="hover:bg-white hover:text-black text-center"
             style={{
               padding: "10px",
               cursor: "pointer",
@@ -136,12 +137,12 @@ const AdminDashboard = () => {
               opacity: 1,
             }}
             onClick={() => setSelectedMenuItem("Service")}
-            className="hover:bg-white hover:text-black"
+            className="hover:bg-white hover:text-black text-center"
           >
             Service
           </li>
           <li
-            className="hover:bg-white hover:text-black"
+            className="hover:bg-white hover:text-black text-center"
             style={{
               padding: "10px",
               cursor: "pointer",
@@ -156,7 +157,7 @@ const AdminDashboard = () => {
         </ul>
 
         <button
-          className="bg-white w-6 text-center text-black active:bg-gray-400 mt-8"
+          className="bg-white w-6 m-5 text-center text-black active:bg-gray-400 mt-8 text-center border-round"
           onClick={(e) => handleLogout(e)}
         >
           Logout
