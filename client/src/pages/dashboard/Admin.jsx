@@ -158,7 +158,7 @@ const Admin = () => {
         </ul>
 
         <button
-          className="bg-white w-6 m-5 text-center text-black active:bg-gray-400 mt-8 text-center border-round"
+          className="bg-white w-6 m-5  text-black active:bg-gray-400 mt-8 text-center border-round"
           onClick={(e) => handleLogout(e)}
         >
           Logout
