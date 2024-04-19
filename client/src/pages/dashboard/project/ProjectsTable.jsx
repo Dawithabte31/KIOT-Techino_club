@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import EditProject from "./ProjectEdit"; 
+import EditProject from "./ProjectEdit";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 const ProjectsTable = () => {
-
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [selectedProjectId, setSelectedProjectId] = useState(null);
   const [projects, setProjects] = useState([]);
@@ -21,7 +20,7 @@ const ProjectsTable = () => {
 
   useEffect(() => {
     getProjects();
-  },[]); 
+  }, []);
   const openEditModal = (projectId) => {
     setSelectedProjectId(projectId);
     setEditModalOpen(true);
@@ -32,113 +31,109 @@ const ProjectsTable = () => {
     setEditModalOpen(false);
   };
 
-  
-
   const handleUpdate = async () => {
     try {
       // Send a PUT request to update the member
-      await axios.put(`http://localhost:3000/api/projects/update/${project._id}`, {
-        proname:  proname,
-        desc:  description,
-        photo: photo,
-      });
+      await axios.put(
+        `http://localhost:3000/api/projects/update/${project._id}`,
+        {
+          proname: proname,
+          desc: description,
+          photo: photo,
+        }
+      );
 
       onUpdate();
       onClose();
-      
     } catch (error) {
-      console.error('Error updating event:', error);
+      console.error("Error updating event:", error);
     }
   };
-    const handleDelete = async (projectId) => {
+  const handleDelete = async (projectId) => {
     try {
-        
-      const projectToDelete = projects.find((project) => project._id === projectId);
+      const projectToDelete = projects.find(
+        (project) => project._id === projectId
+      );
       if (!projectToDelete) {
         console.error("project not found");
         return;
       }
-  
-      await axios.delete(`http://localhost:3000/api/projects/delete/${projectToDelete._id}`, {
-        data: { event: projectToDelete.title }
-      });
+
+      await axios.delete(
+        `http://localhost:3000/api/projects/delete/${projectToDelete._id}`,
+        {
+          data: { event: projectToDelete.title },
+        }
+      );
       console.log("project deleted successfully");
       // Update the members after deletion
       getProjects();
-      } catch (err) {
+    } catch (err) {
       console.error("Error deleting project:", err);
-      }
-      };
-  
+    }
+  };
+
   return (
-    <div style={{ maxWidth: "100%", margin: "0 auto" }}>
-         <div className="addevent">
-            <NavLink to="/addproject"><button>Add New project</button></NavLink>
-         </div>
-      <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "1rem" }}>
-        <thead>
-          <tr>
-            <th style={tableHeaderStyle}>PrName</th>
-            <th style={tableHeaderStyle}>Description</th>
-            <th style={tableHeaderStyle}>Photo</th>
-            <th style={tableHeaderStyle}>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {projects.map((project) => (
+    <div className="max-w-screen-xl  mx-auto px-4 mt-3 md:px-8">
+      <div className="items-start justify-between flex-wrap md:flex">
+        <div className="">
+          <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">
+            Developed Projects
+          </h3>
+        </div>
+        <div className="mt-3 md:mt-0">
+          <NavLink
+            className="inline-block px-4 py-2 text-white duration-150 font-medium bg-indigo-600 rounded-lg hover:bg-indigo-500 active:bg-indigo-700 md:text-sm"
+            to="/addproject"
+          >
+            Add project
+          </NavLink>
+        </div>
+      </div>
+      <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
+        <table className="w-full table-auto text-sm text-left">
+          <thead className="bg-gray-50 text-gray-600 font-medium border-b">
+            <tr>
+              <th className="py-3 px-6">project name</th>
+              <th className="py-3 px-6">Description</th>
+              <th className="py-3 px-6"></th>
+            </tr>
+          </thead>
+          <tbody className="text-gray-600 divide-y">
+            {projects.map((project) => (
               <tr key={project._id}>
-              <td style={tableCellStyle}>{project.proname}</td>
-              <td style={tableCellStyle}>{project.desc}</td>
-              <td style={tableCellStyle}>
-              <img src={project.photo} alt={project.title} style={photoStyle} />
-              </td>
-              <td style={tableCellStyle}>
-                <button  onClick={() => openEditModal(project._id)} style={actionButtonStyle}>Edit</button>
-                <button style={{ ...actionButtonStyle, marginLeft: "0.5rem" }} onClick={()=>handleDelete(project._id)}>Delete</button>
-              </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {project.proname}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">{project.desc}</td>
+                <td className="text-right px-6 whitespace-nowrap">
+                  <button
+                    onClick={() => openEditModal(project._id)}
+                    className="py-2 px-3 font-medium text-indigo-600 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(project._id)}
+                    className="py-2 leading-none px-3 font-medium text-red-600 hover:text-red-500 duration-150 hover:bg-gray-50 rounded-lg"
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
-          ))}
-        </tbody>
-      </table>
-     
-      {isEditModalOpen && (
-        <EditProject projectId={selectedProjectId} onClose={closeEditModal} onUpdate={handleUpdate} />
-      )}
+            ))}
+          </tbody>
+        </table>
+        {isEditModalOpen && (
+          <EditProject
+            projectId={selectedProjectId}
+            onClose={closeEditModal}
+            onUpdate={handleUpdate}
+          />
+        )}
+      </div>
     </div>
   );
 };
 
-
-const tableHeaderStyle = {
-  background: "#f2f2f2",
-  padding: "0.5rem",
-  textAlign: "left",
-  borderBottom: "1px solid #ddd",
-};
-
-const tableCellStyle = {
-  padding: "0.5rem",
-  borderBottom: "1px solid #ddd",
-};
-
-const photoStyle = {
-  width: "40px",
-  height: "40px",
-  borderRadius: "50%",
-  objectFit: "cover",
-};
-
-const actionButtonStyle = {
-  cursor: "pointer",
-  padding: "0.25rem 0.75rem",
-  border: "none",
-  borderRadius: "0.25rem",
-  transition: "background-color 0.3s ease",
-};
-
 export default ProjectsTable;
-
-
-
-
-

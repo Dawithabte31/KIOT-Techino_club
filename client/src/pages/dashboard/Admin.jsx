@@ -9,7 +9,6 @@ import MessagesTable from "./message/MessagesTable";
 import axios from "axios";
 import Registered from "./registeredusers/Registered";
 
-
 const Admin = () => {
   const { dispatch } = useContext(Context);
   const handleLogout = (e) => {
@@ -158,10 +157,10 @@ const Admin = () => {
         </ul>
 
         <button
-          className="bg-white w-6 m-5  text-black active:bg-gray-400 mt-8 text-center border-round"
+          className=""
           onClick={(e) => handleLogout(e)}
         >
-          Logout
+          <span class="material-symbols-outlined ">logout</span>Logout
         </button>
       </div>
       <div style={{ flex: 1, padding: "20px", backgroundColor: "#ecf0f1" }}>

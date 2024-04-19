@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import EditService from "./ServiceEdit"; 
+import EditService from "./ServiceEdit";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 
@@ -21,7 +21,7 @@ const ServicesTable = () => {
 
   useEffect(() => {
     getServices();
-  },[]); 
+  }, []);
 
   const openEditModal = (serviceId) => {
     setSelectedServiceId(serviceId);
@@ -43,23 +43,27 @@ const ServicesTable = () => {
       });
       onUpdate();
       onClose();
-      
     } catch (error) {
-      console.error('Error updating member:', error);
+      console.error("Error updating member:", error);
     }
   };
   const handleDelete = async (serviceId) => {
     try {
-      const serviceToDelete = services.find((service) => service._id === serviceId);
-  
+      const serviceToDelete = services.find(
+        (service) => service._id === serviceId
+      );
+
       if (!serviceToDelete) {
         console.error("Member not found");
         return;
       }
-  
-      await axios.delete(`http://localhost:3000/api/services/delete/${serviceToDelete._id}`, {
-        data: { service: serviceToDelete.fullname }
-      });
+
+      await axios.delete(
+        `http://localhost:3000/api/services/delete/${serviceToDelete._id}`,
+        {
+          data: { service: serviceToDelete.fullname },
+        }
+      );
       console.log("Member deleted successfully");
       // Update the members after deletion
       getServices();
@@ -67,75 +71,70 @@ const ServicesTable = () => {
       console.error("Error deleting member:", err);
     }
   };
-  
-
 
   return (
-    <div className="event-div">
-    <div className="event-div2"  style={{ maxWidth: "100%", margin: "0 auto" }}>
-       <div className="addevent">
-            <NavLink to="/addservice"><button>Add New service</button></NavLink>
-         </div>
-      <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "1rem" }}>
-        <thead>
-          <tr>
-            <th style={tableHeaderStyle}>Title</th>
-            <th style={tableHeaderStyle}>Description</th>
-            <th style={tableHeaderStyle}>Photo</th>
-            <th style={tableHeaderStyle}>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {services.map((service) => (
-              <tr key={service._id}>
-              <td style={tableCellStyle}>{service.title}</td>
-              <td style={tableCellStyle}>{service.desc}</td>
-              <td style={tableCellStyle}>
-              <img src={service.photo} alt={service.title} style={photoStyle} />
-              </td>
-              <td style={tableCellStyle}>
-                  <button  onClick={() => openEditModal(service._id)} style={actionButtonStyle}>Edit</button>
-                  <button style={{ ...actionButtonStyle, marginLeft: "0.5rem" }} onClick={()=>handleDelete(service._id)}>Delete</button>
-              </td>
+    <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+      <div className="items-start justify-between md:flex">
+        <div className="max-w-lg">
+          <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">
+            Services
+          </h3>
+          <p className="text-gray-600 mt-2">Techino club services</p>
+        </div>
+        <div className="mt-3 md:mt-0">
+          <NavLink
+            className="inline-block px-4 py-2 text-white duration-150 font-medium bg-indigo-600 rounded-lg hover:bg-indigo-500 active:bg-indigo-700 md:text-sm"
+            to="/addservice"
+          >
+            <button>Add Service</button>
+          </NavLink>
+        </div>
+      </div>
+      <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
+        <table className="w-full table-auto text-sm text-left">
+          <thead className="bg-gray-50 text-gray-600 font-medium border-b">
+            <tr>
+              <th className="py-3 px-6">Title</th>
+              <th className="py-3 px-6">Description</th>
+              <th className="py-3 px-6">Photo</th>
+              <th className="py-3 px-6"></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      {isEditModalOpen && (
-        <EditService serviceId={selectedServiceId} onClose={closeEditModal} onUpdate={handleUpdate} />
-      )}
-    </div>
+          </thead>
+          <tbody className="text-gray-600 divide-y">
+            {services.map((service) => (
+              <tr key={service._id}>
+                <td className="px-6 py-4 whitespace-nowrap">{service.title}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{service.desc}</td>
+                <td>
+                  <img src={service.photo} alt={service.title} />
+                </td>{" "}
+                <td className="text-right px-6 whitespace-nowrap">
+                  <button
+                    onClick={() => openEditModal(service._id)}
+                    className="py-2 px-3 font-medium text-indigo-600 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(service._id)}
+                    className="py-2 leading-none px-3 font-medium text-red-600 hover:text-red-500 duration-150 hover:bg-gray-50 rounded-lg"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {isEditModalOpen && (
+          <EditService
+            serviceId={selectedServiceId}
+            onClose={closeEditModal}
+            onUpdate={handleUpdate}
+          />
+        )}
+      </div>
     </div>
   );
 };
-
-
-const tableHeaderStyle = {
-  background: "#f2f2f2",
-  padding: "0.5rem",
-  textAlign: "left",
-  borderBottom: "1px solid #ddd",
-};
-
-const tableCellStyle = {
-  padding: "0.5rem",
-  borderBottom: "1px solid #ddd",
-};
-
-const photoStyle = {
-  width: "40px",
-  height: "40px",
-  borderRadius: "50%",
-  objectFit: "cover",
-};
-
-const actionButtonStyle = {
-  cursor: "pointer",
-  padding: "0.25rem 0.75rem",
-  border: "none",
-  borderRadius: "0.25rem",
-  transition: "background-color 0.3s ease",
-};
-
 export default ServicesTable;
-

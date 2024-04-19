@@ -4,7 +4,6 @@ import { Context } from "../../context/Context";
 import axios from "axios";
 
 const User = () => {
-  const { user } = useContext(Context);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
   const renderContent = () => {
     switch (selectedMenuItem) {
@@ -46,7 +45,7 @@ const User = () => {
           style={{ fontSize: "1.5rem", marginBottom: "20px", color: "#ecf0f1" }}
         >
           <span class="material-symbols-outlined mr-2 ml-1">person</span>
-          {user.user.username}
+          User
         </h2>
         <ul style={{ listStyle: "none", padding: 0 }}>
           <li
@@ -68,7 +67,7 @@ const User = () => {
           className="bg-white w-6 text-center text-black active:bg-gray-400 mt-8 m-3 border-round "
           onClick={(e) => handleLogout(e)}
         >
-          Logout
+          <span class="material-symbols-outlined">logout</span> Logout
         </button>
       </div>
       <div style={{ flex: 1, padding: "20px", backgroundColor: "#ecf0f1" }}>

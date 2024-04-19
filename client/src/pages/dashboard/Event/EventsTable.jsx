@@ -71,74 +71,54 @@ const EventsTable = () => {
     }
   };
   
-
   return (
-    <div className="event-div">
-    <div className="event-div2" style={{ maxWidth: "100%", margin: "0 auto" }}>
-         <div className="addevent">
-            <NavLink to="/addevent"><button>Add New Event</button></NavLink>
-         </div>
-      <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "1rem" }}>
-        <thead>
-          <tr>
-            <th style={tableHeaderStyle}>Title</th>
-            <th style={tableHeaderStyle}>Description</th>
-            <th style={tableHeaderStyle}>Photo</th>
-            <th style={tableHeaderStyle}>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {events.map((event) => (
-            <tr key={event._id}>
-              <td style={tableCellStyle}>{event.title}</td>
-              <td style={tableCellStyle}>{event.desc}</td>
-              <td style={tableCellStyle}>
-                <img src={event.photo} alt={event.title} style={photoStyle} />
-              </td>
-              <td style={tableCellStyle}>
-                <button  onClick={() => openEditModal(event._id)} style={actionButtonStyle}>Edit</button>
-                <button style={{ ...actionButtonStyle, marginLeft: "0.5rem" }} onClick={()=>handleDelete(event._id)}>Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-     
-      {isEditModalOpen && (
+      <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+          <div className="items-start justify-between md:flex">
+              <div className="max-w-lg">
+                  <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">
+                      Events
+                  </h3>
+                  <p className="text-gray-600 mt-2">
+                  Dynamic events curated by Techino Club                   </p>
+              </div>
+              <div className="mt-3 md:mt-0">
+                  <NavLink className="inline-block px-4 py-2 text-white duration-150 font-medium bg-indigo-600 rounded-lg hover:bg-indigo-500 active:bg-indigo-700 md:text-sm" to="/addevent"><button>Add New Event</button></NavLink>
+              </div>
+          </div>
+          <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
+              <table className="w-full table-auto text-sm text-left">
+                  <thead className="bg-gray-50 text-gray-600 font-medium border-b">
+                      <tr>
+                          <th className="py-3 px-6">Event Title</th>
+                          <th className="py-3 px-6">Description</th>
+                          <th className="py-3 px-6"></th>
+                      </tr>
+                  </thead>
+                  <tbody className="text-gray-600 divide-y">
+                      {
+                          events.map((event) => (
+                              <tr key={event._id}>
+                                  <td className="px-6 py-4 whitespace-nowrap">{event.title}</td>
+                                  <td className="px-6 py-4 whitespace-nowrap">{event.desc}</td>
+                                  <td className="text-right px-6 whitespace-nowrap">
+                                  
+                                      <button  onClick={() => openEditModal(event._id)} className="py-2 px-3 font-medium text-indigo-600 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg">
+                                          Edit
+                                      </button>
+                                      <button onClick={()=>handleDelete(event._id)} className="py-2 leading-none px-3 font-medium text-red-600 hover:text-red-500 duration-150 hover:bg-gray-50 rounded-lg">
+                                          Delete
+                                      </button>
+                                  </td>
+                              </tr>
+                          ))
+                      }
+                  </tbody>
+              </table>
+              {isEditModalOpen && (
         <EditEvent eventId={selectedEventId} onClose={closeEditModal} onUpdate={handleUpdate} />
       )}
-    </div>
-    </div>
-  );
+          </div>
+      </div>
+  )
 };
-
-
-const tableHeaderStyle = {
-  background: "#f2f2f2",
-  padding: "0.5rem",
-  textAlign: "left",
-  borderBottom: "1px solid #ddd",
-};
-
-const tableCellStyle = {
-  padding: "0.5rem",
-  borderBottom: "1px solid #ddd",
-};
-
-const photoStyle = {
-  width: "40px",
-  height: "40px",
-  borderRadius: "50%",
-  objectFit: "cover",
-};
-
-const actionButtonStyle = {
-  cursor: "pointer",
-  padding: "0.25rem 0.75rem",
-  border: "none",
-  borderRadius: "0.25rem",
-  transition: "background-color 0.3s ease",
-};
-
 export default EventsTable;
-

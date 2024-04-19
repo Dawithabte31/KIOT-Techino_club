@@ -1,244 +1,10 @@
-// import React, { useContext, useEffect, useState } from "react";
-// import EditRegister from "./RegistrationEdit";
-// import axios from "axios";
-// import { NavLink } from "react-router-dom";
-// import { Context } from "../../../context/Context";
-
-// const RegiterTable = () => {
-//   const { user } = useContext(Context);
-//   const [isEditModalOpen, setEditModalOpen] = useState(false);
-//   const [selectedRegisterId, setSelectedRegisterId] = useState(null);
-//   const [register, setRegister] = useState([]);
-//   const getRegisters = async () => {
-//     try {
-//       const res = await axios.get(
-//         `http://localhost:3000/api/registers/allregisters`
-//       );
-//       setRegister(res.data);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-
-//   useEffect(() => {
-//     getRegisters();
-//   }, []);
-
-//   const openEditModal = (registerId) => {
-//     setSelectedRegisterId(registerId);
-//     setEditModalOpen(true);
-//   };
-
-//   const closeEditModal = () => {
-//     setSelectedRegisterId(null);
-//     setEditModalOpen(false);
-//   };
-
-//   const handleUpdate = async () => {
-//     try {
-//       // Send a PUT request to update the member
-//       await axios.put(`http://localhost:3000/api/registers/${register._id}`, {
-//         fullname: fullname,
-//         age: age,
-//         sex: sex,
-//         email: email,
-//         departement: departement,
-//         skills: skills,
-//         why: why,
-//       });
-//       onUpdate();
-//       onClose();
-//     } catch (error) {
-//       console.error("Error updating member:", error);
-//     }
-//   };
-//   const handleUpdatestatus = async (registerId) => {
-//     console.log(registerId);
-//     console.log(user.user.username);
-
-//     try {
-//       if (user.user.role !== 1) {
-//         console.error("Only admin users can update the status.");
-//         return;
-//       }
-//       // Send a PUT request to update the register status to "registered"
-//       await axios.put(
-//         `http://localhost:3000/api/registers/update/${registerId}`,
-//         {
-//           status: "registered",
-//         }
-//       );
-//       console.log("Updated status to 'registered' successfully");
-
-//       // Update the register status in the local state
-//       setRegister(
-//         register.map((reg) =>
-//           reg._id === registerId ? { ...reg, status: "registered" } : reg
-//         )
-//       );
-//     } catch (error) {
-//       console.error("Error updating status:", error);
-//     }
-//   };
-
-//   const handleDelete = async (registerId) => {
-//     try {
-//       const registerToDelete = register.find(
-//         (register) => register._id === registerId
-//       );
-
-//       if (!registerToDelete) {
-//         console.error("request not found");
-//         return;
-//       }
-//       await axios.delete(
-//         `http://localhost:3000/api/registers/delete/${registerToDelete._id}`,
-//         {
-//           data: { register: registerToDelete.fullname },
-//         }
-//       );
-
-//       console.log("request deleted successfully");
-//       // Update the members after deletion
-//       getRegisters();
-//     } catch (err) {
-//       console.error("Error deleting request:", err);
-//     }
-//   };
-
-//   return (
-//     <div style={{ maxWidth: "100%", margin: "0 auto" }}>
-//       <div className="addevent">
-//         <NavLink to="/addregister">
-//           <button>Register</button>
-//         </NavLink>
-//       </div>
-//       <table
-//         style={{ width: "100%", borderCollapse: "collapse", marginTop: "1rem" }}
-//       >
-//         <thead>
-//           <tr>
-//             <th style={tableHeaderStyle}>Fullname</th>
-//             <th style={tableHeaderStyle}>age</th>
-//             <th style={tableHeaderStyle}>sex</th>
-//             <th style={tableHeaderStyle}>Email</th>
-//             <th style={tableHeaderStyle}>Departement</th>
-//             <th style={tableHeaderStyle}>Skill</th>
-//             <th style={tableHeaderStyle}>why</th>
-//             <th style={tableHeaderStyle}>status</th>
-//             <th style={tableHeaderStyle}>action</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {register.map((register) => (
-//             <tr key={register._id}>
-//               {user.user.role === 1 ||
-//               user.user.username === register.username ? (
-//                 <>
-//                   <td style={tableCellStyle}>{register.fullname}</td>
-//                   <td style={tableCellStyle}>{register.age}</td>
-//                   <td style={tableCellStyle}>{register.sex}</td>
-//                   <td style={tableCellStyle}>{register.email}</td>
-//                   <td style={tableCellStyle}>{register.departement}</td>
-//                   <td style={tableCellStyle}>{register.skill}</td>
-//                   <td style={tableCellStyle}>{register.why}</td>
-//                   {/* <tdc className={register.status==pendding? (text-red):text-green} style={tableCellStyle}>{register.status}</tdc> */}
-//                   <td
-//                     className={
-//                       register.status === "pending"
-//                         ? "text-red-500"
-//                         : "text-green-600"
-//                     }
-//                     style={tableCellStyle}
-//                   >
-//                     {register.status}
-//                   </td>
-//                   <td style={tableCellStyle}>
-//                     <div>
-//                       {/* <button
-//                         onClick={() => openEditModal(register._id)}
-//                         style={actionButtonStyle}
-//                       >
-//                         Edit
-//                       </button> */}
-//                       <span
-//                         onClick={() => openEditModal(register._id)}
-//                         class="material-symbols-outlined text-green-600 w-2 h-6 cursor-pointer"
-//                       >
-//                         edit
-//                       </span>
-//                       {user.user.role === 1 ? (
-//                         <button
-//                           className="bg-gray-300 p-0 m-2 mb-3 active:text-white" 
-//                           onClick={() => handleUpdatestatus(register._id)}
-//                           style={actionButtonStyle}
-//                         >
-//                           confirm 
-//                         </button>
-//                       ) : null}
-                     
-//                       <span
-//                         onClick={() => handleDelete(register._id)}
-//                         class="material-symbols-outlined text-red-400 cursor-pointer"
-//                       >
-//                         delete
-//                       </span>
-//                     </div>
-//                   </td>
-//                 </>
-//               ) : null}
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-//       {isEditModalOpen && (
-//         <EditRegister
-//           registerId={selectedRegisterId}
-//           onClose={closeEditModal}
-//           onUpdate={handleUpdate}
-//         />
-//       )}
-//     </div>
-//   );
-// };
-
-// const tableHeaderStyle = {
-//   background: "#f2f2f2",
-//   padding: "0.5rem",
-//   textAlign: "left",
-//   borderBottom: "1px solid #ddd",
-// };
-
-// const tableCellStyle = {
-//   padding: "0.5rem",
-//   borderBottom: "1px solid #ddd",
-// };
-
-// const photoStyle = {
-//   width: "40px",
-//   height: "40px",
-//   borderRadius: "50%",
-//   objectFit: "cover",
-// };
-
-// const actionButtonStyle = {
-//   cursor: "pointer",
-//   padding: "0.25rem 0.75rem",
-//   border: "none",
-//   borderRadius: "0.25rem",
-//   transition: "background-color 0.3s ease",
-// };
-
-// export default RegiterTable;
-
-
 import React, { useContext, useEffect, useState } from "react";
 import EditRegister from "./RegistrationEdit";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { Context } from "../../../context/Context";
 
-const RegiterTable = () => {
+const RegistrationTable = () => {
   const { user } = useContext(Context);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [selectedRegisterId, setSelectedRegisterId] = useState(null);
@@ -287,9 +53,6 @@ const RegiterTable = () => {
     }
   };
   const handleUpdatestatus = async (registerId) => {
-    console.log(registerId);
-    console.log(user.user.username);
-
     try {
       if (user.user.role !== 1) {
         console.error("Only admin users can update the status.");
@@ -339,82 +102,88 @@ const RegiterTable = () => {
       console.error("Error deleting request:", err);
     }
   };
-
   return (
-    <div style={{ overflowX: "auto" }}>
-      <div style={{ maxWidth: "100%", margin: "0 auto" }}>
-        <div className="addevent">
-          <NavLink to="/addregister">
-            <button>Register</button>
+    <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+      <div className="items-start justify-between md:flex">
+        <div className="max-w-lg">
+          <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">
+            Registration 
+          </h3>
+          {!user.user.role === 1 && <p>{user.user.username}</p>}
+        </div>
+        <div className="mt-3 md:mt-0">
+          <NavLink
+            to="/addregister"
+            className="inline-block px-4 py-2 text-white duration-150 font-medium bg-indigo-600 rounded-lg hover:bg-indigo-500 active:bg-indigo-700 md:text-sm"
+          >
+            Register
           </NavLink>
         </div>
-        <table
-          style={{ width: "100%", borderCollapse: "collapse", marginTop: "1rem" }}
-        >
-          <thead>
+      </div>
+      <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
+        <table className="w-full table-auto text-sm text-left">
+          <thead className="bg-gray-50 text-gray-600 font-medium border-b">
             <tr>
-              <th style={tableHeaderStyle}>Fullname</th>
-              <th style={tableHeaderStyle}>age</th>
-              <th style={tableHeaderStyle}>sex</th>
-              <th style={tableHeaderStyle}>Email</th>
-              <th style={tableHeaderStyle}>Departement</th>
-              <th style={tableHeaderStyle}>Skill</th>
-              <th style={tableHeaderStyle}>why</th>
-              <th style={tableHeaderStyle}>status</th>
-              <th style={tableHeaderStyle}>action</th>
+              <th className="py-3 px-6">Fullname</th>
+              <th className="py-3 px-6">age</th>
+              <th className="py-3 px-6">sex</th>
+              <th className="py-3 px-6">Email</th>
+              <th className="py-3 px-6">Departement</th>
+              <th className="py-3 px-6">Skill</th>
+              <th className="py-3 px-6">why</th>
+              <th className="py-3 px-6"></th>
             </tr>
           </thead>
-          <tbody>
-            {register.map((register) => (
-              <tr key={register._id}>
-                {user.user.role === 1 ||
-                user.user.username === register.username ? (
+          <tbody className="text-gray-600 divide-y">
+            {register.map((reg) => (
+              <tr key={reg._id}>
+                {(user.user.role === 1 ||
+                  user.user.username === reg.username) && (
                   <>
-                    <td style={tableCellStyle}>{register.fullname}</td>
-                    <td style={tableCellStyle}>{register.age}</td>
-                    <td style={tableCellStyle}>{register.sex}</td>
-                    <td style={tableCellStyle}>{register.email}</td>
-                    <td style={tableCellStyle}>{register.departement}</td>
-                    <td style={tableCellStyle}>{register.skill}</td>
-                    <td style={tableCellStyle}>{register.why}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {reg.fullname}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">{reg.age}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{reg.sex}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{reg.email}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {reg.departement}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">{reg.skill}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{reg.why}</td>
                     <td
-                      className={
-                        register.status === "pending"
+                      className={`${
+                        reg.status === "pending"
                           ? "text-red-500"
                           : "text-green-600"
-                      }
-                      style={tableCellStyle}
+                      } text-right px-6 whitespace-nowrap`}
                     >
-                      {register.status}
+                      {reg.status}
                     </td>
-                    <td style={tableCellStyle}>
-                      <div>
-                        <span
-                          onClick={() => openEditModal(register._id)}
-                          class="material-symbols-outlined text-green-600 w-2 h-6 cursor-pointer mr-4"
+                    <td>
+                      <button
+                        onClick={() => openEditModal(reg._id)}
+                        className="py-2 px-3 font-medium text-indigo-600 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg"
+                      >
+                        Edit
+                      </button>
+                      {user.user.role === 1 && (
+                        <button
+                          className="bg-gray-300 p-0 m-2 mb-3 active:text-white"
+                          onClick={() => handleUpdatestatus(reg._id)}
                         >
-                          edit
-                        </span>
-                        {user.user.role === 1 ? (
-                          <button
-                            className="bg-gray-300 p-0 m-2 mb-3 active:text-white" 
-                            onClick={() => handleUpdatestatus(register._id)}
-                            style={actionButtonStyle}
-                          >
-                            confirm 
-                          </button>
-                        ) : null}
-                       
-                        <span
-                          onClick={() => handleDelete(register._id)}
-                          class="material-symbols-outlined text-black-400 cursor-pointer"
-                        >
-                          delete
-                        </span>
-                      </div>
+                          Confirm
+                        </button>
+                      )}
+                      <button
+                        onClick={() => handleDelete(reg._id)}
+                        className="py-2 leading-none px-3 font-medium text-red-600 hover:text-red-500 duration-150 hover:bg-gray-50 rounded-lg"
+                      >
+                        Delete
+                      </button>
                     </td>
                   </>
-                ) : null}
+                )}
               </tr>
             ))}
           </tbody>
@@ -430,32 +199,4 @@ const RegiterTable = () => {
     </div>
   );
 };
-
-const tableHeaderStyle = {
-  background: "#f2f2f2",
-  padding: "0.5rem",
-  textAlign: "left",
-  borderBottom: "1px solid #ddd",
-};
-
-const tableCellStyle = {
-  padding: "0.5rem",
-  borderBottom: "1px solid #ddd",
-};
-
-const photoStyle = {
-  width: "40px",
-  height: "40px",
-  borderRadius: "50%",
-  objectFit: "cover",
-};
-
-const actionButtonStyle = {
-  cursor: "pointer",
-  padding: "0.25rem 0.75rem",
-  border: "none",
-  borderRadius: "0.25rem",
-  transition: "background-color 0.3s ease",
-};
-
-export default RegiterTable;
+export default RegistrationTable;
