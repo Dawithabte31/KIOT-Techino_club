@@ -31,10 +31,14 @@ const User = () => {
     <div
       className="admindashboard"
       style={{ display: "flex", fontFamily: "Arial, sans-serif" }}
-    >
-      {/* Sidebar */}
+    >     <div className="flex ">
+             
+           </div>
+           <div></div>
       <div
         style={{
+          
+          // display:"none",
           width: "200px",
           backgroundColor: "#2c3e50",
           color: "#ecf0f1",
@@ -47,6 +51,7 @@ const User = () => {
           <span class="material-symbols-outlined mr-2 ml-1">person</span>
           User
         </h2>
+      
         <ul style={{ listStyle: "none", padding: 0 }}>
           <li
             className="hover:bg-white hover:text-black"
@@ -63,12 +68,10 @@ const User = () => {
           </li>
         </ul>
 
-        <button
-          className="bg-white w-6 text-center text-black active:bg-gray-400 mt-8 m-3 border-round "
-          onClick={(e) => handleLogout(e)}
-        >
-          <span class="material-symbols-outlined">logout</span> Logout
-        </button>
+        <div className="flex cursor-pointer mt-20" onClick={(e) => handleLogout(e)}>
+          <span class="material-symbols-outlined ">logout</span>
+          Logout
+        </div>
       </div>
       <div style={{ flex: 1, padding: "20px", backgroundColor: "#ecf0f1" }}>
         {renderContent()}

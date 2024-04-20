@@ -64,7 +64,7 @@ const Admin = () => {
         </h2>
         <ul style={{ listStyle: "none", padding: 0 }}>
           <li
-            className="hover:bg-white hover:text-black text-center"
+            className="hover:bg-white hover:text-black "
             style={{
               padding: "10px",
               cursor: "pointer",
@@ -77,7 +77,7 @@ const Admin = () => {
             Members
           </li>
           <li
-            className="hover:bg-white hover:text-black text-center"
+            className="hover:bg-white hover:text-black "
             style={{
               padding: "10px",
               cursor: "pointer",
@@ -90,7 +90,7 @@ const Admin = () => {
             Members List
           </li>
           <li
-            className="hover:bg-white hover:text-black text-center"
+            className="hover:bg-white hover:text-black"
             style={{
               padding: "10px",
               cursor: "pointer",
@@ -103,7 +103,7 @@ const Admin = () => {
             Events
           </li>
           <li
-            className="hover:bg-white hover:text-black text-center"
+            className="hover:bg-white hover:text-black"
             style={{
               padding: "10px",
               cursor: "pointer",
@@ -116,7 +116,7 @@ const Admin = () => {
             Projects
           </li>
           <li
-            className="hover:bg-white hover:text-black text-center"
+            className="hover:bg-white hover:text-black "
             style={{
               padding: "10px",
               cursor: "pointer",
@@ -137,12 +137,12 @@ const Admin = () => {
               opacity: 1,
             }}
             onClick={() => setSelectedMenuItem("Service")}
-            className="hover:bg-white hover:text-black text-center"
+            className="hover:bg-white hover:text-black"
           >
             Service
           </li>
           <li
-            className="hover:bg-white hover:text-black text-center"
+            className="hover:bg-white hover:text-black"
             style={{
               padding: "10px",
               cursor: "pointer",
@@ -155,13 +155,10 @@ const Admin = () => {
             Message
           </li>
         </ul>
-
-        <button
-          className=""
-          onClick={(e) => handleLogout(e)}
-        >
-          <span class="material-symbols-outlined ">logout</span>Logout
-        </button>
+        <div className="flex cursor-pointer" onClick={(e) => handleLogout(e)}>
+          <span class="material-symbols-outlined ">logout</span>
+          Logout
+        </div>
       </div>
       <div style={{ flex: 1, padding: "20px", backgroundColor: "#ecf0f1" }}>
         {renderContent()}
