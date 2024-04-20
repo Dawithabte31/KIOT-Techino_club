@@ -14,7 +14,7 @@ const MemberEdit = ({ memberId, onClose}) => {
   useEffect(() => {
     const getMemberDetails = async () => {
       try {
-       const res = await axios.get(`http://localhost:3000/api/members/get/${memberId}`);
+       const res = await axios.get(`${import.meta.env.VITE_BASE_URL}api/members/get/${memberId}`);
         setMember(res.data);
       } catch (error) {
         console.log(error);
@@ -26,7 +26,7 @@ const MemberEdit = ({ memberId, onClose}) => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:3000/api/members/update/${memberId}`, {   
+      await axios.put(`${import.meta.env.VITE_BASE_URL}api/members/update/${memberId}`, {   
       fullname: fullName,
       desc: description,
       photo: photo,

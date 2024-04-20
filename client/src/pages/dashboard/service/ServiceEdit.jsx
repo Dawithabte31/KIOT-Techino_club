@@ -14,7 +14,7 @@ const [service, setServices] = useState({
   useEffect(() => {
     const getServiceDetails = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/services/get/${serviceId}`);
+        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}api/services/get/${serviceId}`);
         setServices(res.data);
       } catch (error) {
         console.log(error);
@@ -28,7 +28,7 @@ const [service, setServices] = useState({
   const handleUpdate = async () => {
    
     try {
-      await axios.put(`http://localhost:3000/api/services/update/${serviceId}`, {   
+      await axios.put(`${import.meta.env.VITE_BASE_URL}api/services/update/${serviceId}`, {   
       title: title,
       desc: description,
       photo: photo,

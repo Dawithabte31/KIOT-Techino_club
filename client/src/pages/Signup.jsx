@@ -89,7 +89,7 @@ export default function Signup() {
     e.preventDefault();
     setError(false)
     try {
-      const res = await axios.post('http://localhost:3000/api/register', {
+      const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/register`, {
         confPassword:confPassword,
         password: password,
         email: email,

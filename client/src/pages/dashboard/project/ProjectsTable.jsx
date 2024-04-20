@@ -10,7 +10,7 @@ const ProjectsTable = () => {
   const getProjects = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/projects/allprojects`
+        `${import.meta.env.VITE_BASE_URL}api/projects/allprojects`
       );
       setProjects(res.data);
     } catch (error) {
@@ -35,7 +35,7 @@ const ProjectsTable = () => {
     try {
       // Send a PUT request to update the member
       await axios.put(
-        `http://localhost:3000/api/projects/update/${project._id}`,
+        `${import.meta.env.VITE_BASE_URL}api/projects/update/${project._id}`,
         {
           proname: proname,
           desc: description,
@@ -60,7 +60,7 @@ const ProjectsTable = () => {
       }
 
       await axios.delete(
-        `http://localhost:3000/api/projects/delete/${projectToDelete._id}`,
+        `${import.meta.env.VITE_BASE_URL}api/projects/delete/${projectToDelete._id}`,
         {
           data: { event: projectToDelete.title },
         }

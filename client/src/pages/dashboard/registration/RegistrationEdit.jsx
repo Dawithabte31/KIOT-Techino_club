@@ -22,7 +22,7 @@ const RegistrationEdit = ({ registerId, onClose }) => {
     const getRegisterDetails = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/registers/get/${registerId}`
+          `${import.meta.env.VITE_BASE_URL}api/registers/get/${registerId}`
         );
         setRegisters(res.data);
       } catch (error) {
@@ -35,7 +35,7 @@ const RegistrationEdit = ({ registerId, onClose }) => {
   const handleUpdate = async () => {
     try {
       await axios.put(
-        `http://localhost:3000/api/registers/update/${registerId}`,
+        `${import.meta.env.VITE_BASE_URL}api/registers/update/${registerId}`,
         {
           fullname: fullname,
           age: age,

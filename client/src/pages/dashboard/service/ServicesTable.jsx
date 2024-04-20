@@ -11,7 +11,7 @@ const ServicesTable = () => {
   const getServices = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/services/allservices`
+        `${import.meta.env.VITE_BASE_URL}api/services/allservices`
       );
       setServices(res.data);
     } catch (error) {
@@ -36,7 +36,7 @@ const ServicesTable = () => {
   const handleUpdate = async () => {
     try {
       // Send a PUT request to update the member
-      await axios.put(`http://localhost:3000/api/services/${service._id}`, {
+      await axios.put(`${import.meta.env.VITE_BASE_URL}api/services/${service._id}`, {
         title: fullName,
         desc: description,
         photo: photo,
@@ -59,7 +59,7 @@ const ServicesTable = () => {
       }
 
       await axios.delete(
-        `http://localhost:3000/api/services/delete/${serviceToDelete._id}`,
+        `${import.meta.env.VITE_BASE_URL}api/services/delete/${serviceToDelete._id}`,
         {
           data: { service: serviceToDelete.fullname },
         }

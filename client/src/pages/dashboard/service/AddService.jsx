@@ -17,7 +17,7 @@ function AddService() {
       formData.append("file", file);
 
       try {
-        await axios.post("http://localhost:3000/api/upload", formData);
+        await axios.post(`${import.meta.env.VITE_BASE_URL}api/upload`, formData);
         setPhoto(filename);
 
       } catch (error) {
@@ -26,7 +26,7 @@ function AddService() {
     }
 
     try {
-      await axios.post(`http://localhost:3000/api/services/create`, {
+      await axios.post(`${import.meta.env.VITE_BASE_URL}api/services/create`, {
         title: title,
         desc: description,
         photo: photo,

@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function Blog({members}) {
-  const PF = "http://localhost:3000/images/";
+  const PF = `${import.meta.env.VITE_BASE_URL}images/`;
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [slidessToShow, setSlidesToShow] = useState(1);
   useEffect(() => {

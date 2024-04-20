@@ -18,14 +18,14 @@ function Events() {
   useEffect(() => {
     const fetchEvents = async () => {
       const res = await axios.get(
-        "http://localhost:3000/api/events/allevents" + search
+        `${import.meta.env.VITE_BASE_URL}api/events/allevents` + search
       );
       setEvents(res.data);
       setLoading(false);
     };
     fetchEvents();
   }, [search]);
-  const PF = "http://localhost:3000/images/";
+  const PF = `${import.meta.env.VITE_BASE_URL}images/`;
 
   return (
     <div>

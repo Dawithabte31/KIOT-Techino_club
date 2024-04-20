@@ -10,7 +10,7 @@ const Registered = () => {
   const getRegisters = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/registers/allregisters`
+        `${import.meta.env.VITE_BASE_URL}api/registers/allregisters`
       );
       setRegister(res.data);
     } catch (error) {

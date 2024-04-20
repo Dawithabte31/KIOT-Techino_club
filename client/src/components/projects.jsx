@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 export default function projects({ projects }) {
-  const PF = "http://localhost:3000/images/";
+  const PF = `${import.meta.env.VITE_BASE_URL}images/`;
   // console.log(projects.desc);
   const [showMore, setShowMore] = useState(-1);
 

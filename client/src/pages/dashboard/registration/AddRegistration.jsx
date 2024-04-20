@@ -24,7 +24,7 @@ function AddRegistration() {
 
   const handleAdd = async () => {
     try {
-      await axios.post("http://localhost:3000/api/registers/create", {
+      await axios.post(`${import.meta.env.VITE_BASE_URL}api/registers/create`, {
         username: user.user.username,
         fullname: fullname,
         age: age,

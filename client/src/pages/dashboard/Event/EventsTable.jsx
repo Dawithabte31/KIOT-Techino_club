@@ -11,7 +11,7 @@ const EventsTable = () => {
   const getEvents = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/events/allevents`
+        `${import.meta.env.VITE_BASE_URL}api/events/allevents`
       );
       setEvents(res.data);
     } catch (error) {
@@ -37,7 +37,7 @@ const EventsTable = () => {
   const handleUpdate = async () => {
     try {
       // Send a PUT request to update the member
-      await axios.put(`http://localhost:3000/api/events/update/${event._id}`, {
+      await axios.put(`${import.meta.env.VITE_BASE_URL}api/events/update/${event._id}`, {
         title:  fullName,
         desc:  description,
         photo: photo,
@@ -59,7 +59,7 @@ const EventsTable = () => {
         return;
       }
   
-      await axios.delete(`http://localhost:3000/api/events/delete/${eventToDelete._id}`, {
+      await axios.delete(`${import.meta.env.VITE_BASE_URL}api/events/delete/${eventToDelete._id}`, {
         data: { event: eventToDelete.title }
       });
       console.log("event deleted successfully");

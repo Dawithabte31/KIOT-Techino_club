@@ -11,7 +11,7 @@ export default function services({ services }) {
     autoplay: true,
     autoPlaySpeed: 2000,
   };
-  const PF = "http://localhost:3000/images/";
+  const PF = `${import.meta.env.VITE_BASE_URL}images/`;
 
   return (
     <div className={`services--container`}>

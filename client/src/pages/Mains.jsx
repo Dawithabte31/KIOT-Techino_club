@@ -23,17 +23,17 @@ export default function Mains() {
   const {search}=useLocation();
   useEffect(()=>{
     const fetchProjects = async()=>{
-    const res = await axios.get('http://localhost:3000/api/projects/allprojects' +  search)
+    const res = await axios.get(`${import.meta.env.VITE_BASE_URL}api/projects/allprojects` +  search)
     setProjects(res.data);
       setLoadingp(false);
     }
     const fetchServices = async()=>{
-      const res = await axios.get('http://localhost:3000/api/services/allservices' +  search)
+      const res = await axios.get(`${import.meta.env.VITE_BASE_URL}api/services/allservices` +  search)
       setServices(res.data);
         setLoadings(false);
       }
      const fetchMembers = async()=>{
-        const res = await axios.get('http://localhost:3000/api/members/allmembers' +  search)
+        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}api/members/allmembers` +  search)
         setMembers(res.data);
        
         }

@@ -9,7 +9,7 @@ const MembersTable = () => {
   const getMembers = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/members/allmembers`
+        `${import.meta.env.VITE_BASE_URL}api/members/allmembers`
       );
       setMembers(res.data);
     } catch (error) {
@@ -34,7 +34,7 @@ const MembersTable = () => {
   const handleUpdate = async () => {
     try {
       // Send a PUT request to update the member
-      await axios.put(`http://localhost:3000/api/members/${member._id}`, {
+      await axios.put(`${import.meta.env.VITE_BASE_URL}api/members/${member._id}`, {
         fullname: fullName,
         desc: description,
         photo: photo,
@@ -57,7 +57,7 @@ const MembersTable = () => {
       }
 
       await axios.delete(
-        `http://localhost:3000/api/members/delete/${memberToDelete._id}`,
+        `${import.meta.env.VITE_BASE_URL}api/members/delete/${memberToDelete._id}`,
         {
           data: { member: memberToDelete.fullname },
         }

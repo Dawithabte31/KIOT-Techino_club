@@ -12,7 +12,7 @@ const RegistrationTable = () => {
   const getRegisters = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/registers/allregisters`
+        `${import.meta.env.VITE_BASE_URL}api/registers/allregisters`
       );
       setRegister(res.data);
     } catch (error) {
@@ -37,7 +37,7 @@ const RegistrationTable = () => {
   const handleUpdate = async () => {
     try {
       // Send a PUT request to update the member
-      await axios.put(`http://localhost:3000/api/registers/${register._id}`, {
+      await axios.put(`${import.meta.env.VITE_BASE_URL}api/registers/${register._id}`, {
         fullname: fullname,
         age: age,
         sex: sex,
@@ -60,7 +60,7 @@ const RegistrationTable = () => {
       }
       // Send a PUT request to update the register status to "registered"
       await axios.put(
-        `http://localhost:3000/api/registers/update/${registerId}`,
+        `${import.meta.env.VITE_BASE_URL}api/registers/update/${registerId}`,
         {
           status: "registered",
         }
@@ -89,7 +89,7 @@ const RegistrationTable = () => {
         return;
       }
       await axios.delete(
-        `http://localhost:3000/api/registers/delete/${registerToDelete._id}`,
+        `${import.meta.env.VITE_BASE_URL}api/registers/delete/${registerToDelete._id}`,
         {
           data: { register: registerToDelete.fullname },
         }

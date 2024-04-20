@@ -12,7 +12,7 @@ import axios from "axios";
   useEffect(() => {
     const getProjectDetails = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/projects/get/${projectId}`);
+        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}api/projects/get/${projectId}`);
         setProjects(res.data);
       } catch (error) {
         console.log(error);
@@ -25,7 +25,7 @@ import axios from "axios";
    
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:3000/api/projects/update/${projectId}`, {   
+      await axios.put(`${import.meta.env.VITE_BASE_URL}api/projects/update/${projectId}`, {   
       proname: title,
       desc: description,
       photo: photo,

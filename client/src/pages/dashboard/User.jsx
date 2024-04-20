@@ -18,7 +18,7 @@ const User = () => {
   const handleLogout = (e) => {
     e.preventDefault();
     try {
-      axios.post("http://localhost:3000/api/logout");
+      axios.post(`${import.meta.env.VITE_BASE_URL}api/logout`);
       dispatch({ type: "LogOut" });
       localStorage.removeItem("token");
       window.location.href = "/login";

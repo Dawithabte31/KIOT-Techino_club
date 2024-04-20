@@ -6,7 +6,7 @@ const MessagesTable = () => {
   const getmessages = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/messages/allmessages`
+        `${import.meta.env.VITE_BASE_URL}api/messages/allmessages`
       );
       setMessages(res.data);
     } catch (error) {
@@ -29,7 +29,7 @@ const MessagesTable = () => {
         return;
       }
   
-      await axios.delete(`http://localhost:3000/api/messages/delete/${messageToDelete._id}`, {
+      await axios.delete(`${import.meta.env.VITE_BASE_URL}api/messages/delete/${messageToDelete._id}`, {
         data: { event: messageToDelete.email }
       });
       console.log("project deleted successfully");

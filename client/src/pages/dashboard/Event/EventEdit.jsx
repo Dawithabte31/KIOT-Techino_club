@@ -12,7 +12,7 @@ import axios from "axios";
   useEffect(() => {
     const getEventDetails = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/events/get/${eventId}`);
+        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}api/events/get/${eventId}`);
         setEvents(res.data);
       } catch (error) {
         console.log(error);
@@ -26,7 +26,7 @@ import axios from "axios";
    
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:3000/api/events/update/${eventId}`, {   
+      await axios.put(`${import.meta.env.VITE_BASE_URL}api/events/update/${eventId}`, {   
       title: title,
       desc: description,
       photo: photo,

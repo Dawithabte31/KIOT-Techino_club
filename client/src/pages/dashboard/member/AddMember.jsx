@@ -15,7 +15,7 @@ function AddMember() {
         formData.append("file", file);
   
         try {
-          await axios.post("http://localhost:3000/api/upload", formData);
+          await axios.post(`${import.meta.env.VITE_BASE_URL}api/upload`, formData);
           setPhoto(filename);
   
         } catch (error) {
@@ -23,7 +23,7 @@ function AddMember() {
         }
       }
         try {
-          await axios.post(`http://localhost:3000/api/members/create`, {   
+          await axios.post(`${import.meta.env.VITE_BASE_URL}api/members/create`, {   
             fullname: fullname,
             desc: description,
             photo: photo,

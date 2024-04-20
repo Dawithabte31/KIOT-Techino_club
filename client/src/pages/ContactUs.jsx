@@ -11,7 +11,7 @@ export default function ContactUs() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/api/messages/create", {
+      await axios.post(`${import.meta.env.VITE_BASE_URL}api/messages/create`, {
         name: name,
         email: email,
         message: message,
