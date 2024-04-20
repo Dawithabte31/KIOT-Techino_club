@@ -74,7 +74,7 @@ const ProjectsTable = () => {
   };
 
   return (
-    <div className="max-w-screen-xl  mx-auto px-4 mt-3 md:px-8">
+    <div className="max-w-screen-xl  mx-auto px-4 mt-3 md:px-">
       <div className="items-start justify-between flex-wrap md:flex">
         <div className="">
           <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">
@@ -94,18 +94,18 @@ const ProjectsTable = () => {
         <table className="w-full table-auto text-sm text-left">
           <thead className="bg-gray-50 text-gray-600 font-medium border-b">
             <tr>
-              <th className="py-3 px-6">project name</th>
-              <th className="py-3 px-6">Description</th>
-              <th className="py-3 px-6"></th>
+              <th className="py-3 px-2">project name</th>
+              <th className="py-3 px-2">Description</th>
+              <th className="py-3 px-2"></th>
             </tr>
           </thead>
           <tbody className="text-gray-600 divide-y">
             {projects.map((project) => (
               <tr key={project._id}>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-2 py-4 whitespace-nowrap">
                   {project.proname}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">{project.desc}</td>
+                <td className="px-2 py-4 whitespace-nowrap">{project.desc}</td>
                 <td className="text-right px-6 whitespace-nowrap">
                   <button
                     onClick={() => openEditModal(project._id)}

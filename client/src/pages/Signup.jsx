@@ -156,7 +156,7 @@ export default function Signup() {
         </div>
         <button className="signIn" type="submit">Sign up</button>
         <p>
-          Already have an account <Link to="/login">Sign In</Link>
+          Already have an account <Link to="/login" className="text-blue-800">Sign In</Link>
         </p>
       </form>
     </div>

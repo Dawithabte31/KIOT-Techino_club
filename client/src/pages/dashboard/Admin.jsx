@@ -44,13 +44,29 @@ const Admin = () => {
         return null;
     }
   };
-
+  const [active, seActive] = useState(false);
+  const handlclickopen = () => {
+    seActive(true);
+  };
+  const handlclickclose = () => {
+    seActive(false);
+  };
   return (
     <div
       className="admindashboard "
       style={{ display: "flex", fontFamily: "Arial, sans-serif" }}
     >
+      <span
+        onClick={handlclickopen}
+        class={`material-symbols-outlined ${
+          active ? "hidden" : ""
+        }  absolute sm:hidden md:hidden lg:hidden ml-2 mt-3 font-medium text-gray-400  cursor-pointer `}
+      >
+        menu
+      </span>
+
       <div
+        className={`${active ? "" : "hidden"} lg:block sm:block`}
         style={{
           width: "200px",
           backgroundColor: "#2c3e50",
@@ -58,10 +74,18 @@ const Admin = () => {
           padding: "20px",
         }}
       >
-        <h2 className="my-4  flex justify-center h-auto w-auto font-extrabold">
-          <span class="material-symbols-outlined">person</span>
-          Admin
-        </h2>
+        <div className="flex">
+          <h2 className="my-4  flex justify-center h-auto w-auto font-extrabold ">
+            <span class="material-symbols-outlined">person</span>
+            Admin
+          </h2>
+          <span
+            onClick={handlclickclose}
+            class="material-symbols-outlined block sm:hidden md:hodden lg:hidden mt-4 mx-7 text-gray-400 cursor-pointer"
+          >
+            arrow_back
+          </span>
+        </div>
         <ul style={{ listStyle: "none", padding: 0 }}>
           <li
             className="hover:bg-white hover:text-black "
@@ -155,7 +179,10 @@ const Admin = () => {
             Message
           </li>
         </ul>
-        <div className="flex cursor-pointer" onClick={(e) => handleLogout(e)}>
+        <div
+          className="flex cursor-pointer mt-8"
+          onClick={(e) => handleLogout(e)}
+        >
           <span class="material-symbols-outlined ">logout</span>
           Logout
         </div>

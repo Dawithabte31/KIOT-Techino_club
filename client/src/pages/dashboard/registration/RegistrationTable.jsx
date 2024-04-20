@@ -124,14 +124,14 @@ const RegistrationTable = () => {
         <table className="w-full table-auto text-sm text-left">
           <thead className="bg-gray-50 text-gray-600 font-medium border-b">
             <tr>
-              <th className="py-3 px-6">Fullname</th>
-              <th className="py-3 px-6">age</th>
-              <th className="py-3 px-6">sex</th>
-              <th className="py-3 px-6">Email</th>
-              <th className="py-3 px-6">Departement</th>
-              <th className="py-3 px-6">Skill</th>
-              <th className="py-3 px-6">why</th>
-              <th className="py-3 px-6"></th>
+              <th className="py-3 px-2">Fullname</th>
+              <th className="py-3 px-2">age</th>
+              <th className="py-3 px-2">sex</th>
+              <th className="py-3 px-2">Email</th>
+              <th className="py-3 px-2">Departement</th>
+              <th className="py-3 px-2">Skill</th>
+              <th className="py-3 px-2">why</th>
+              <th className="py-3 px-2"></th>
             </tr>
           </thead>
           <tbody className="text-gray-600 divide-y">
@@ -140,17 +140,17 @@ const RegistrationTable = () => {
                 {(user.user.role === 1 ||
                   user.user.username === reg.username) && (
                   <>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-2 py-4 whitespace-nowrap">
                       {reg.fullname}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">{reg.age}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{reg.sex}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{reg.email}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-2 py-4 whitespace-nowrap">{reg.age}</td>
+                    <td className="px-2 py-4 whitespace-nowrap">{reg.sex}</td>
+                    <td className="px-2 py-4 whitespace-nowrap">{reg.email}</td>
+                    <td className="px-2 py-4 whitespace-nowrap">
                       {reg.departement}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">{reg.skill}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{reg.why}</td>
+                    <td className="px-2 py-4 whitespace-nowrap">{reg.skill}</td>
+                    <td className="px-2 py-4 whitespace-nowrap">{reg.why}</td>
                     <td
                       className={`${
                         reg.status === "pending"

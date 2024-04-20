@@ -26,18 +26,29 @@ const User = () => {
       console.error("Error logging out:", error);
     }
   };
-
+  const [active, seActive] = useState(false);
+  const handlclickopen = () => {
+    seActive(true);
+  };
+  const handlclickclose = () => {
+    seActive(false);
+  };
   return (
     <div
       className="admindashboard"
       style={{ display: "flex", fontFamily: "Arial, sans-serif" }}
-    >     <div className="flex ">
-             
-           </div>
-           <div></div>
+    >
+      <span
+        onClick={handlclickopen}
+        class={`material-symbols-outlined ${
+          active ? "hidden" : ""
+        }  absolute sm:hidden md:hidden lg:hidden ml-2 mt-3 font-medium text-gray-400 cursor-pointer`}
+      >
+        menu
+      </span>
       <div
+        className={`${active ? "" : "hidden"} lg:block sm:block`}
         style={{
-          
           // display:"none",
           width: "200px",
           backgroundColor: "#2c3e50",
@@ -45,13 +56,24 @@ const User = () => {
           padding: "20px",
         }}
       >
-        <h2
-          style={{ fontSize: "1.5rem", marginBottom: "20px", color: "#ecf0f1" }}
-        >
-          <span class="material-symbols-outlined mr-2 ml-1">person</span>
-          User
-        </h2>
-      
+        <div className="flex gap-6">
+          <h2
+            style={{
+              fontSize: "1.5rem",
+              marginBottom: "20px",
+              color: "#ecf0f1",
+            }}
+          >
+            <span class="material-symbols-outlined mr-2 ml-1">person</span>
+            User
+          </h2>
+          <span
+            onClick={handlclickclose}
+            class="material-symbols-outlined block sm:hidden md:hodden lg:hidden text-gray-400 cursor-pointer "
+          >
+            arrow_back
+          </span>
+        </div>
         <ul style={{ listStyle: "none", padding: 0 }}>
           <li
             className="hover:bg-white hover:text-black"
@@ -68,7 +90,10 @@ const User = () => {
           </li>
         </ul>
 
-        <div className="flex cursor-pointer mt-20" onClick={(e) => handleLogout(e)}>
+        <div
+          className="flex cursor-pointer mt-20"
+          onClick={(e) => handleLogout(e)}
+        >
           <span class="material-symbols-outlined ">logout</span>
           Logout
         </div>
