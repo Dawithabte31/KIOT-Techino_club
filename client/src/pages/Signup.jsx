@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-
-import axios from 'axios';
+import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Footer from "../components/footer";
 
 export default function Signup() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [confPassword,setConfPassword]=useState('');
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confPassword, setConfPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
 
   // const [inputs, setInputs] = useState({
@@ -85,82 +84,126 @@ export default function Signup() {
   //   }
   // }
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setError(false);
+  //   if(!password===confPassword){
+  //    setError(true);
+  //   }else{
+  //   try {
+  //     const res = await axios.post(
+  //       `${import.meta.env.VITE_BASE_URL}api/register`,
+  //       {
+  //         confPassword: confPassword,
+  //         password: password,
+  //         email: email,
+  //         username: username,
+  //       }
+  //     );
+  //     res.data && window.location.replace("/login");
+  //   } catch (error) {
+       
+  //   }}
+  // };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(false)
+    setError("");
+
     try {
-      const res = await axios.post(`${import.meta.env.VITE_BASE_URL}api/register`, {
-        confPassword:confPassword,
-        password: password,
-        email: email,
-        username: username
+      const res = await axios.post("/api/register", {
+        username,
+        password,
+        confPassword,
+        email,
       });
-      res.data && window.location.replace('/login');
+      console.log(res.data);
+      window.location.replace("/login");
     } catch (error) {
-      setError(true);
+      if (error.response && error.response.status === 400) {
+        setError(error.response.data.message);
+      } else {
+        console.error("Server Error:", error.message);
+      }
     }
   };
 
+
   return (
     <>
-    <div className="login">
-      <form className="inputs" onSubmit={handleSubmit}>
-        <h1 className="title">Welcome To TechIno</h1>
-        <input
-          type="text"
-          placeholder="Username"
-          className="input"
-          name="userName"
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          className="input"
-          name="email"
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <div className="pass">
+      <div className="login">
+        <form className="inputs" onSubmit={handleSubmit}>
+          <h1 className="title">Welcome To TechIno</h1>
           <input
-            type={showPassword.password ? "text" : "password"}
-            placeholder="password"
+            type="text"
+            placeholder="Username"
             className="input"
-            name="password"
-            onChange={(e) => setPassword(e.target.value)}
-            onFocus={handleFocusPassword}
+            name="userName"
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
-          {focused.password && (
-            <span className="eye" onClick={handleTogglePassword}>
-              {showPassword.password ? <FaEyeSlash /> : <FaEye />}
-            </span>
-          )}
-        </div>
-        <div className="pass">
           <input
-            type={showPassword.confPassword ? "text" : "password"}
-            placeholder="confirm Password"
+            type="email"
+            placeholder="Email"
             className="input"
-            name="confirmPassword"
-            onChange={(e) => setConfPassword(e.target.value)}
-            onFocus={handleFocusconfPassword}
+            name="email"
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
-          {focused.confPassword && (
-            <span className="eye" onClick={handleToggleconfPassword}>
-              {showPassword.confPassword ? <FaEyeSlash /> : <FaEye />}
-            </span>
-          )}
-        </div>
-        <button className="signIn" type="submit">Sign up</button>
-        <p>
-          Already have an account <Link to="/login" className="text-blue-800">Sign In</Link>
-        </p>
-      </form>
-    </div>
-    <Footer/>
+          <div className="pass">
+            <input
+              type={showPassword.password ? "text" : "password"}
+              placeholder="password"
+              className="input"
+              name="password"
+              onChange={(e) => setPassword(e.target.value)}
+              onFocus={handleFocusPassword}
+              required
+            />
+            {focused.password && (
+              <span className="eye" onClick={handleTogglePassword}>
+                {showPassword.password ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            )}
+          </div>
+          <div className="pass">
+            <input
+              required
+              type={showPassword.confPassword ? "text" : "password"}
+              placeholder="confirm Password"
+              className="input"
+              name="confirmPassword"
+              onChange={(e) => setConfPassword(e.target.value)}
+              onFocus={handleFocusconfPassword}
+              
+            />
+            {focused.confPassword && (
+              <span className="eye" onClick={handleToggleconfPassword}>
+                {showPassword.confPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            )}
+          </div>
+             {error && <p>{error}</p>}
+        {/* { <p>
+            Already have an account with this username!!
+          </p>
+          <p>
+            Confirm password must match the password!!
+          </p>} */}
+
+          <button className="signIn" type="submit">
+            Sign up
+          </button>
+          <p>
+            Already have an account{" "}
+            <Link to="/login" className="text-blue-800">
+              Sign In
+            </Link>
+          </p>
+        </form>
+      </div>
+      <Footer />
     </>
   );
 }

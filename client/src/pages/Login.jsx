@@ -22,7 +22,7 @@ function Login() {
   };
 
   const [isFocused, setIsFocused] = useState(false);
-
+const [error,setError]=useState(false);
   function handleFocus() {
     setIsFocused(true);
   }
@@ -40,6 +40,7 @@ function Login() {
       setEmail('');
       setPassword('');
     } catch (error) {
+      setError(true);
       dispatch({ type: "LOGIN_FAILURE" });
     }
   };
@@ -51,6 +52,7 @@ function Login() {
           <h1 className="title">Welcome To TechIno</h1>
 
           <input
+            required
             type="email"
             placeholder="email"
             className="input"
@@ -62,6 +64,7 @@ function Login() {
 
           <div className="pass">
             <input
+              required
               className="input"
               type="password"
               id="password"
@@ -76,6 +79,9 @@ function Login() {
               </span>
             )}
           </div>
+          <p className={`${error? "":"hidden"} text-red-500`}>
+           Wrong email or password
+          </p>
           <button className="signIn" type="submit">
             Sign in
           </button>
