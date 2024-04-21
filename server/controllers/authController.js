@@ -4,17 +4,12 @@ const bcrypt = require("bcryptjs");
 const ErrorResponse = require("../utils/errorResponse");
 
 //register
-exports.register = async (req, res) =>{
+exports.register = async (req, res) => {
   try {
     const emailvalidate = await User.findOne({ email: req.body.email });
-    const usernamevalidate =await user.username({username:req.body.username});
-    if (emailvalidate ) {
+    if (emailvalidate) {
       return new ErrorResponse(`Email already in use`, 400).sendError(res);
-      
     } else {
-      if(usernamevalidate){
-        return new ErrorResponse(`username already in use`, 400).sendError(res);
-      }else{
       const salt = await bcrypt.genSalt(10);
       const hashedPass = await bcrypt.hash(req.body.password, salt);
       const hashedconfPass = await bcrypt.hash(req.body.confPassword, salt);
@@ -33,9 +28,8 @@ exports.register = async (req, res) =>{
         res.status(200).json(user);
       }
     }
-  }
   } catch (err) {
-    res.status(err.statusCode || 500).json({ success: false, message: err.message });
+    res.status(500).json(err);
   }
 };
 //login

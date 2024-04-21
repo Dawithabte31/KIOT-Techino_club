@@ -10,6 +10,8 @@ export default function Signup() {
   const [confPassword, setConfPassword] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
+  const [perror, setPerror] = useState(false);
+
 
   // const [inputs, setInputs] = useState({
   //   userName: "",
@@ -84,50 +86,29 @@ export default function Signup() {
   //   }
   // }
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setError(false);
-  //   if(!password===confPassword){
-  //    setError(true);
-  //   }else{
-  //   try {
-  //     const res = await axios.post(
-  //       `${import.meta.env.VITE_BASE_URL}api/register`,
-  //       {
-  //         confPassword: confPassword,
-  //         password: password,
-  //         email: email,
-  //         username: username,
-  //       }
-  //     );
-  //     res.data && window.location.replace("/login");
-  //   } catch (error) {
-       
-  //   }}
-  // };
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-
+    setError(false);
+    if(!password===confPassword){
+     setPerror(true);
+    }else{
     try {
-      const res = await axios.post("/api/register", {
-        username,
-        password,
-        confPassword,
-        email,
-      });
-      console.log(res.data);
-      window.location.replace("/login");
+      const res = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}api/register`,
+        {
+          confPassword: confPassword,
+          password: password,
+          email: email,
+          username: username,
+        }
+      );
+      res.data && window.location.replace("/login");
     } catch (error) {
-      if (error.response && error.response.status === 400) {
-        setError(error.response.data.message);
-      } else {
-        console.error("Server Error:", error.message);
-      }
-    }
+      setError(true);
+    }}
   };
+
+
 
 
   return (
@@ -184,14 +165,8 @@ export default function Signup() {
               </span>
             )}
           </div>
-             {error && <p>{error}</p>}
-        {/* { <p>
-            Already have an account with this username!!
-          </p>
-          <p>
-            Confirm password must match the password!!
-          </p>} */}
-
+             {error && <p className="text-red-500">Username and Email must be unique!</p>}
+             {perror && <p className="text-red-500">Passwords do not match!</p>}
           <button className="signIn" type="submit">
             Sign up
           </button>
