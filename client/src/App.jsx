@@ -27,15 +27,16 @@ function App() {
     <section className="app--container">
       <Router>
         <Navbar />
+        
         <Routes>
           <Route index element={<Mains />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="blog" element={<Blog />} />
           <Route path="contact" element={<ContactUs />} />
-          <Route path="about" element={<AboutH />} />
+          {/* <Route path="about" element={<AboutH />} /> */}
           <Route path="event" element={<Events />} />
-          <Route path="admin" element={<Admin /> } />
+          <Route path="admin" element={<Admin />} />
           <Route path="user" element={<User /> } />
           <Route path="/addmember" element={<AddMember />} />
           <Route path="/addevent" element={<AddEvent />} />

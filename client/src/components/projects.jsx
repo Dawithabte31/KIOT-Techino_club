@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { fadeIn } from "../variants";
+import { motion } from "framer-motion";
 export default function projects({ projects }) {
   const PF = `${import.meta.env.VITE_BASE_URL}images/`;
   // console.log(projects.desc);
@@ -13,11 +15,19 @@ export default function projects({ projects }) {
   }
 
   return (
-    <section className="project--container--main">
-      <h1 className="porjects--header">Projects we recently developed</h1>
+    <section className="project--container--main mt-28" id="Project">
+      <h1 className="porjects--header text-secondary">Projects we recently developed</h1>
+      <p className="text-center text-gray-500">Projects developed by the members of techino club</p>
       {projects &&
         projects.map((project, index) => (
-          <div className="project--container" key={index}>
+          <motion.div
+            className="project--container mt-6"
+            key={index}
+            variants={fadeIn("right", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: true, amount: 0.7 }}
+          >
             <div className="project--image--container">
               {project.photo && (
                 <img
@@ -47,7 +57,7 @@ export default function projects({ projects }) {
                 </div>
               )}
             </div>
-          </div>
+          </motion.div>
         ))}
     </section>
   );

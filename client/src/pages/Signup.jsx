@@ -88,8 +88,7 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(false);
-    if(!password===confPassword){
+    if(password!==confPassword){
      setPerror(true);
     }else{
     try {
@@ -102,9 +101,11 @@ export default function Signup() {
           username: username,
         }
       );
+      console.log(res.data.error);
       res.data && window.location.replace("/login");
-    } catch (error) {
+    } catch (err) {
       setError(true);
+      setPerror(false);
     }}
   };
 
@@ -113,7 +114,7 @@ export default function Signup() {
 
   return (
     <>
-      <div className="login">
+      <div className="login mt-10">
         <form className="inputs" onSubmit={handleSubmit}>
           <h1 className="title">Welcome To TechIno</h1>
           <input

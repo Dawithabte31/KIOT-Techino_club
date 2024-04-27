@@ -44,10 +44,10 @@ function Blog({members}) {
 
   return (
     <div className="profile--container">
-      <h2 className="profile--header">Members</h2>
+      <h2 className="profile--header text-secondary mb-5">Team Leaders<span className="text-primary"> 2024</span></h2>
       <Slider {...settings}>
         {members && members.map((member) => (
-          <div className="profile">
+          <div className="profile" key={member.fullname}>
             <div className="profile--image  ">
               <img src={PF + member.photo} alt={`image of ${member.fullname}`} />
             </div>

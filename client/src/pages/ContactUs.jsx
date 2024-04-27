@@ -27,7 +27,7 @@ export default function ContactUs() {
 
   return (
     <>
-      <div className="contact--container">
+      <div className="contact--container mt-10">
         <div className="contact--info">
           <h2 className="contact--header">Get in touch</h2>
           <p>we are here for you! how can we help</p>

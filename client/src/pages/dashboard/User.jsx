@@ -4,6 +4,7 @@ import { Context } from "../../context/Context";
 import axios from "axios";
 
 const User = () => {
+  
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
   const renderContent = () => {
     switch (selectedMenuItem) {
@@ -35,12 +36,12 @@ const User = () => {
   };
   return (
     <div
-      className="admindashboard"
+      className="admindashboard mt-[100px]"
       style={{ display: "flex", fontFamily: "Arial, sans-serif" }}
     >
       <span
         onClick={handlclickopen}
-        class={`material-symbols-outlined ${
+        className={`material-symbols-outlined ${
           active ? "hidden" : ""
         }  absolute sm:hidden md:hidden lg:hidden ml-2 mt-3 font-medium text-gray-400 cursor-pointer`}
       >
@@ -69,7 +70,7 @@ const User = () => {
           </h2>
           <span
             onClick={handlclickclose}
-            class="material-symbols-outlined block sm:hidden md:hodden lg:hidden text-gray-400 cursor-pointer "
+            className="material-symbols-outlined block sm:hidden md:hodden lg:hidden text-gray-400 cursor-pointer "
           >
             arrow_back
           </span>
@@ -94,7 +95,7 @@ const User = () => {
           className="flex cursor-pointer mt-20"
           onClick={(e) => handleLogout(e)}
         >
-          <span class="material-symbols-outlined ">logout</span>
+          <span className="material-symbols-outlined ">logout</span>
           Logout
         </div>
       </div>

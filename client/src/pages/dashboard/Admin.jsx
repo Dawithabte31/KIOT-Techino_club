@@ -53,12 +53,12 @@ const Admin = () => {
   };
   return (
     <div
-      className="admindashboard "
+      className="admindashboard mt-[100px]"
       style={{ display: "flex", fontFamily: "Arial, sans-serif" }}
     >
       <span
         onClick={handlclickopen}
-        class={`material-symbols-outlined ${
+        className={`material-symbols-outlined ${
           active ? "hidden" : ""
         }  absolute sm:hidden md:hidden lg:hidden ml-2 mt-3 font-medium text-gray-400  cursor-pointer `}
       >
@@ -76,12 +76,12 @@ const Admin = () => {
       >
         <div className="flex">
           <h2 className="my-4  flex justify-center h-auto w-auto font-extrabold ">
-            <span class="material-symbols-outlined">person</span>
+            <span className="material-symbols-outlined">person</span>
             Admin
           </h2>
           <span
             onClick={handlclickclose}
-            class="material-symbols-outlined block sm:hidden md:hodden lg:hidden mt-4 mx-7 text-gray-400 cursor-pointer"
+            className="material-symbols-outlined block sm:hidden md:hodden lg:hidden mt-4 mx-7 text-gray-400 cursor-pointer"
           >
             arrow_back
           </span>
@@ -183,7 +183,7 @@ const Admin = () => {
           className="flex cursor-pointer mt-8"
           onClick={(e) => handleLogout(e)}
         >
-          <span class="material-symbols-outlined ">logout</span>
+          <span className="material-symbols-outlined ">logout</span>
           Logout
         </div>
       </div>
