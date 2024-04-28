@@ -80,7 +80,7 @@ function Navbar() {
                 Event
               </NavLink>
               <NavLink
-                to="/blog"
+                to="/contact"
                 className="block hover:text-gray-300 text-secondary cursor-pointer"
                 onClick={handleMenuItemClick}
               >
@@ -185,7 +185,7 @@ function Navbar() {
           Event
         </NavLink>
         <NavLink
-          to="/blog"
+          to="/contact"
           className="block text-xl md:hidden text-white hover:text-gray-300 cursor-pointer "
           onClick={handleMenuItemClick}
         >
