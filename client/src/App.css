@@ -10,6 +10,7 @@
 
 body{
   font-family: "Jost", sans-serif;
+  overflow-x: hidden;
 }
 .menu-items {
   display: flex;
@@ -20,7 +21,7 @@ nav{
   z-index: 10001 !important;
 }
 .gradientBg{
-  background: linear-gradient(99deg, #c6bbce 10%, #132d66 100%);
+  background: linear-gradient(99deg, #a8bdeb 10%, #031935 100%);
 }
 .btn{
 
