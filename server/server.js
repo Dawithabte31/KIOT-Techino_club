@@ -18,7 +18,15 @@ const membersRoute = require("./routes/members");
 require("dotenv").config();
 
 // Middleware
-app.use(cors());
+app.use(
+  cors(
+    cors({
+      origin: process.env.CORSE_ORIGIN,
+      credentials: true,
+    })
+  )
+);
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public")); // Serving static files from the "public" directory
 app.use(express.json());
@@ -66,7 +74,7 @@ app.use("/api/messages", messageRoute);
 
 // Start server
 const port = process.env.PORT || 3000;
-app.listen(port,() => {
+app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 app.get("/", (req, res) => {
