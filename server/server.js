@@ -18,14 +18,7 @@ const membersRoute = require("./routes/members");
 require("dotenv").config();
 
 // Middleware
-app.use(
-  cors(
-    cors({
-      origin: process.env.CORSE_ORIGIN,
-      credentials: true,
-    })
-  )
-);
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public")); // Serving static files from the "public" directory

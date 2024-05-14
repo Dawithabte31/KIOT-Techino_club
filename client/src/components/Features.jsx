@@ -9,10 +9,10 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../variants";
 function Features() {
   return (
-    <div className="my-24 md:px-14 px-4 max-w-screen-2xl mx-auto" id="feature">
+    <div className="my-24 md:px-14 px-4 max-w-screen-2xl mx-auto px-5" id="feature">
       <div className="flex flex-col lg:flex-row justify-between items-start gap-10">
         <motion.div
-          className="lg:w-1/4"
+          className="lg:w-2/5"
           variants={fadeIn("right", 0.2)}
           initial="hidden"
           whileInView={"show"}
@@ -29,7 +29,7 @@ function Features() {
           </p>
         </motion.div>
         <motion.div
-          className="flex flex-col w-full lg:w-3/4"
+          className="flex flex-col w-full lg:w-3/5"
           variants={fadeIn("up", 0.3)}
           initial="hidden"
           whileInView={"show"}
