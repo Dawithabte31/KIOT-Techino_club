@@ -75,7 +75,7 @@ export default function Mains() {
       {!loadings ? (
         <Services services={services} />
       ) : (
-        <div className="text-center md:grid grid-cols-2 md:mt-[250px]">
+        <div className="max-w-screen-2xl mx-auto text-center md:grid grid-cols-2 md:mt-[250px]">
           <Skeleton className="mt-3 mb-2" width="75%" height="300px"></Skeleton>
           <div>
             <Skeleton className="" width="90%" height="150px"></Skeleton>
@@ -89,7 +89,7 @@ export default function Mains() {
       {!loadingp ? (
         <Projects projects={projects} />
       ) : (
-        <div className="text-center ">
+        <div className="max-w-screen-2xl mx-auto text-center ">
           <Skeleton className="mt-3 mb-2" width="50%" height="53px"></Skeleton>
           <Skeleton width="70%" height="503px"></Skeleton>
           <Skeleton className="mt-5" width="70%" height="500px"></Skeleton>

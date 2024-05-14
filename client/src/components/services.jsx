@@ -17,7 +17,7 @@ export default function services({ services }) {
 
   return (
     <div
-      className="flex flex-col md:gap-8 md:flex-row mt-[250px] "
+      className="flex max-w-screen-2xl flex-col md:gap-8 md:flex-row mt-[250px] "
       id="Service"
     >
       <motion.div

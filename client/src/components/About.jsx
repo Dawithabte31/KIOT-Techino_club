@@ -1,14 +1,14 @@
 import React from "react";
 import about from "../images/about.png";
 import { fadeIn } from "../variants";
-import { motion } from "framer-motion";
+import { motion} from "framer-motion";
 import { NavLink } from "react-router-dom";
 function About() {
   return (
-    <div className="md:px-14 p-4 max-w-s mx-auto space-y-12 mt-[30px] md:mt-[200px] mt">
+    <div className="md:px-14 p-4 max-w-screen-2xl mx-auto space-y-12 mt-[30px] md:mt-[200px] mt">
 
       <div
-        className="flex flex-col md:flex-row-reverse justify-between items-center gap-8"
+        className="flex mx-5  flex-col md:flex-row-reverse justify-between items-center gap-8"
         id="About"
       >
         <motion.div

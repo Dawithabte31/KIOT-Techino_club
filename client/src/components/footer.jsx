@@ -12,7 +12,7 @@ import { IoMdHome } from "react-icons/io";
 
 export default function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer max-w-screen-2xl mx-auto">
       <div className="footer--heading">
         <h1>&equiv; TechIno</h1>
         <AiOutlineSound className="emit" />

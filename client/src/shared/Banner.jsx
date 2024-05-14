@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 function Banner({ student, heading, subheading, btn1 }) {
   return (
-    <div className="gradientBg rounded-xl rounded-br-[80px] md:p-9 px-4 py-9  ">
+    <div className="gradientBg  rounded-xl rounded-br-[80px] md:p-9 px-4 py-9  ">
       <div className="flex flex-col md:flex-row-reverse justify-between items-center gap-10">
         {/* banner image */}
         <motion.div
