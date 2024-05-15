@@ -1,11 +1,11 @@
 import React from "react";
-import about from "../images/about.png";
+import about2 from "../images/about2.png";
 import { fadeIn } from "../variants";
 import { motion} from "framer-motion";
 import { NavLink } from "react-router-dom";
 function About() {
   return (
-    <div className="md:px-14 p-4 max-w-screen-2xl mx-auto space-y-12 mt-[30px] md:mt-[200px] mt">
+    <div className=" md:pl-7 md:px-14 p-4  max-w-screen-2xl mx-auto space-y-12 mt-[30px] md:mt-[200px] md:mb-8">
 
       <div
         className="flex mx-5  flex-col md:flex-row-reverse justify-between items-center gap-8"
@@ -18,7 +18,7 @@ function About() {
           whileInView={"show"}
           viewport={{ once: false, amount: 0.5 }}
         >
-          <img src={about} className="h-[350px]" alt="" />
+          <img  src={about2} className="h-[300px] md:mx-4 " alt="" />
         </motion.div>
 
         <motion.div

@@ -17,7 +17,7 @@ export default function services({ services }) {
 
   return (
     <div
-      className="flex max-w-screen-2xl flex-col md:gap-8 md:flex-row mt-[250px] "
+      className="  flex max-w-screen-2xl mx-auto  flex-col md:gap-8 md:flex-row mt-[250px] "
       id="Service"
     >
       <motion.div
@@ -58,7 +58,7 @@ export default function services({ services }) {
         </Slider>
       </motion.div>
       <motion.div
-        className="md:w-2/5 md:mt-1 mt-8 "
+        className="md:w-2/5 mx-4 md:mt-1 mt-8 "
         variants={fadeIn("left", 0.3)}
         initial="hidden"
         whileInView={"show"}

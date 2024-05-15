@@ -53,7 +53,7 @@ export default function Mains() {
   }, [search]);
 
   return (
-    <div>
+    <div className="overflow-hidden">
       {/* <main className="main--container">
         <div className="hero-section">
           <video autoPlay loop mmuted playsInline>

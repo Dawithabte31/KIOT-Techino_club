@@ -15,7 +15,6 @@ export default function Footer() {
     <footer className="footer max-w-screen-2xl mx-auto">
       <div className="footer--heading">
         <h1>&equiv; TechIno</h1>
-        <AiOutlineSound className="emit" />
         <p className="mx-3">let's talk about the future</p>
         
       </div>
@@ -86,7 +85,7 @@ export default function Footer() {
           <a href="#">{<FaLinkedinIn />}</a>
         </div>
       </div>
-      <div className="copy">&copy;2024 copyright</div>
+      <div className="copy bg-secondary text-gray-300">&copy;2024 copyright</div>
     </footer>
   );
 }

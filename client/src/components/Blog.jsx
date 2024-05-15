@@ -43,9 +43,9 @@ function Blog({members}) {
   };
 
   return (
-    <div className="profile--container">
+    <div className=" profile--container max-w-screen-2xl mx-auto mb-4 md:mb-8  ">
       <h2 className="profile--header text-secondary mb-5">Team Leaders<span className="text-primary"> 2024</span></h2>
-      <Slider {...settings}>
+      <Slider {...settings} className=" bg-gray-200 rounded-xl">
         {members && members.map((member) => (
           <div className="profile" key={member.fullname}>
             <div className="profile--image  ">

@@ -15,7 +15,7 @@ export default function projects({ projects }) {
   }
 
   return (
-    <section className="project--container--main mt-28" id="Project">
+    <section className=" project--container--main mt-28 bg- " id="Project">
       <h1 className="porjects--header text-secondary">Projects we recently developed</h1>
       <p className="text-center text-gray-500">Projects developed by the members of techino club</p>
       {projects &&

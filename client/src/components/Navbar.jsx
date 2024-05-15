@@ -29,7 +29,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="bg-white md:px-14 p-4 max-w-screen-2xl mx-auto text-primary fixed top-0 right-0 left-0 border-b">
+      <nav className=" bg-white md:px-14 p-4 max-w-screen-2xl mx-auto text-primary fixed top-0 right-0 left-0 border-b md:flex md:justify-center">
         <div className="text-xl container max-auto flex  items-center justify-between  font-medium">
           <div className="flex space-x-14 items-center "> 
             <a
@@ -88,7 +88,7 @@ function Navbar() {
               </NavLink>
             </ul>
           </div>
-          <div className="space-x-12 hidden md:flex items-center">
+          <div className="space-x-12 hidden md:flex items-center ">
             {!user ? (
               <NavLink to="/login">
                 <button className="ring-[#5B5AA3] text-secondary px-4 py-2 transition-all duration-300 rounded hover:text-primary active:text-secondary hover:bg-white active:bg-white hover:ring-1 ">
@@ -130,20 +130,19 @@ function Navbar() {
         </div>
       </nav>
       <div
-        className={`space-y-5 px-4 pt-[150px] pb-5 bg-[#1e7992] ${
+        className={`space-y-5 px-4 z-50  pt-[150px] pb-5 bg-secondary ${
           isMenuOpen
             ? "block fixed top-0 right-0 left-0 indent-6 overflow-hidden "
             : "hidden"
         }`}
       >
-        {" "}
         {user ? (
           <NavLink
             to={user.user && (user.user.role ? "/admin" : "/user")}
             className="ml-2"
             onClick={handleMenuItemClick}
           >
-            <span className=" material-symbols-outlined text-5xl text-secondary flex justify-start">
+            <span className=" material-symbols-outlined text-5xl text-white flex justify-start">
               account_circle
             </span>
           </NavLink>
@@ -191,8 +190,9 @@ function Navbar() {
         >
           Contact us
         </NavLink>
+        <div className="flex flex-row gap-10 justify-center ">
         {!user?(<NavLink
-          className="block md:hidden text-xl flex justify-center text-white hover:text-gray-300 cursor-pointer "
+          className="text-white hover:text-gray-300 cursor-pointer ring-2 cursor-pointer  flex justify-center ring-white block md:hidden text-xl rounded pr-4 flex justify-center text-white hover:text-gray-300 cursor-pointer "
           to="/login"
           onClick={() => {
             setMenuOpen(false);
@@ -201,7 +201,7 @@ function Navbar() {
           Login
         </NavLink>):null}
        { !user? (<NavLink
-          className="block md:hidden text-xl text-white hover:text-gray-300 cursor-pointer ring-2 cursor-pointer  flex justify-center ring-white rounded "
+          className="block md:hidden text-xl pr-4 text-secondary bg-white hover:text-gray-300 cursor-pointer ring-2 cursor-pointer  flex justify-center ring-white rounded "
           to="/signup"
           onClick={() => {
             setMenuOpen(false);
@@ -209,6 +209,8 @@ function Navbar() {
         >
           Sign Up
         </NavLink>):null}
+        </div>
+        
       </div>
     </>
   );
